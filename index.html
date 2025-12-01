@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olagbajumo Education Foundation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'swiss-bg': '#F4F4F0',
+              'swiss-black': '#111111',
+              'swiss-red': '#E03C31',
+              'swiss-blue': '#0047BB',
+              'swiss-gray': '#B0B0B0',
+            },
+            fontFamily: {
+              sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+              display: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+            },
+            fontWeight: {
+              normal: '300',
+              medium: '400',
+              semibold: '400',
+              bold: '400',
+              extrabold: '400',
+              black: '500',
+            },
+            spacing: {
+              '128': '32rem',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #F4F4F0; }
+      ::-webkit-scrollbar-thumb { background: #111111; }
+      ::-webkit-scrollbar-thumb:hover { background: #E03C31; }
+
+      .bg-swiss-grid {
+        background-image: 
+          linear-gradient(#E5E5E5 1px, transparent 1px),
+          linear-gradient(90deg, #E5E5E5 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      
+      .bg-noise {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-swiss-bg text-swiss-black font-sans antialiased selection:bg-swiss-red selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
