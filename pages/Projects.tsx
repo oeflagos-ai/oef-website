@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
-import { ArrowUpRight, Edit2, Save, X, PlayCircle } from 'lucide-react';
+import { ArrowUpRight, Edit2, Save, X } from 'lucide-react';
 
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
