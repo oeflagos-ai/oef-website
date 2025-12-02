@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
     title: "Abigail Academy",
     description: "Building an institutional organism that enables learners to create feedback loops between the classroom and their external worlds. We lead with the question: “How can an educational institution create stronger mental models of understanding reality in students?” ",
     status: "Ongoing",
-    image: "/Abigail Academy sq logo.jpeg"
+    image: "/AAlogo.png"
   },
   {
     id: '2',
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
     title: "Project Saber",
     description: "In Project Saber, we are researching how technology can play a key role in learning and make processes engaging and playful.",
     status: "Ongoing",
-    image: "/Triangle.jpg"
+    image: "/OEFlogo.png"
   }
 ];
 
