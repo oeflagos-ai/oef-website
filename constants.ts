@@ -42,10 +42,6 @@ export const ABOUT_SECTIONS = [
     title: "Our Approach",
     content: `We collaborate with educators, technologists, and policymakers to build modern platforms, curate diverse curriculum, and support community-led learning initiatives. By leveraging technology, we will scale our impact globally. Our first initiative, Abigail Academy, addresses the United Nations (UN) Sustainable Development Goal (SDG)—Goal 4: Quality Education. We aim to ensure that our students can define who they are, identify their interests, and map out the vision that will enable them to secure their future.`
   },
-  {
-    title: "History",
-    content: `The Olagbajumo Education Foundation (OEF) is a charitable, non-profit organization established to foster in persons a zeal for seeking knowledge. OEF seeks to impact young people by providing a toolkit for them to know their place in an evolving world.`
-  }
 ];
 
 export const TEAM_MEMBERS: TeamMember[] = [
