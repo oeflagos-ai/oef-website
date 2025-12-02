@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CONTACT_EMAIL, CONTACT_ADDRESS, SOCIAL_LINKS } from '../constants';
 
@@ -8,7 +9,7 @@ const Contact: React.FC = () => {
         
         <div className="border-l-4 border-swiss-red pl-8 md:pl-16 py-8">
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-swiss-black">
-            Drop us a line.
+            HELLO.
           </h1>
           
           <div className="space-y-10">
@@ -33,6 +34,8 @@ const Contact: React.FC = () => {
                   <a 
                     key={link.platform} 
                     href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-lg font-bold border-b-2 border-transparent hover:border-swiss-black transition-colors"
                   >
                     {link.platform}

@@ -1,3 +1,4 @@
+
 export interface Project {
   id: string;
   title: string;
@@ -5,6 +6,8 @@ export interface Project {
   image: string;
   link?: string;
   status: 'Ongoing' | 'Completed' | 'Planned';
+  hideDetailsLink?: boolean;
+  embedUrl?: string;
 }
 
 export interface NavItem {
@@ -17,4 +20,5 @@ export interface TeamMember {
   role: string;
   bio: string;
   image?: string;
+  almaMater?: string;
 }

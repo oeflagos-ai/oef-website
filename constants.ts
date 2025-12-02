@@ -1,3 +1,4 @@
+
 import { NavItem, Project, TeamMember } from './types';
 
 // ==========================================
@@ -49,13 +50,15 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Olafare Olagbaju",
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
-    image: "/Olafare.jpg" 
+    image: "/Olafare.jpg",
+    almaMater: "Harvard University"
   },
   {
     name: "Ifeanyi Olagbaju",
     role: "Trustee",
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
-    image: "/Ifeanyi.jpg"
+    image: "/Ifeanyi.jpg",
+    almaMater: "University of Lagos"
   }
 ];
 
@@ -66,21 +69,25 @@ export const PROJECTS: Project[] = [
     title: "Abigail Academy",
     description: "Building an institutional organism that enables learners to create feedback loops between the classroom and their external worlds. We lead with the question: “How can an educational institution create stronger mental models of understanding reality in students?” ",
     status: "Ongoing",
-    image: "/AAlogo.png"
+    image: "/AAlogo.png",
+    hideDetailsLink: true
   },
   {
     id: '2',
     title: "Academy Lunch and Learn",
     description: "A learning series transforming student perspectives on life outside school. This program connects students with professionals through a thematic, hour-long chat.",
     status: "Ongoing",
-    image: "/Academy Lunch and Learn.jpeg.png"
+    image: "/Academy Lunch and Learn.jpeg.png",
+    embedUrl: "https://vimeo.com/olagbajumoeducation",
+    hideDetailsLink: true
   },
   {
     id: '3',
     title: "Project Saber",
     description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful.",
     status: "Ongoing",
-    image: "/OEFlogo.png"
+    image: "/OEFlogo.png",
+    hideDetailsLink: true
   }
 ];
 

@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
-import { ArrowUpRight, Edit2, Save, X } from 'lucide-react';
+import { ArrowUpRight, Edit2, Save, X, PlayCircle } from 'lucide-react';
 
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
@@ -176,9 +177,26 @@ const Projects: React.FC = () => {
                         </p>
                       </>
                     )}
+                    
+                    {/* Media Embed / Link Block for Vimeo */}
+                    {!isEditing && project.embedUrl && (
+                       <div className="mb-6 p-4 bg-swiss-black text-swiss-bg rounded-sm border-l-4 border-swiss-red">
+                          <h4 className="font-bold uppercase tracking-widest text-xs mb-2 text-swiss-gray">Featured Media</h4>
+                          <p className="text-sm mb-4 opacity-80">Watch our latest discussions and series on Vimeo.</p>
+                          <a 
+                             href={project.embedUrl} 
+                             target="_blank" 
+                             rel="noopener noreferrer" 
+                             className="inline-flex items-center gap-2 bg-swiss-blue text-white px-4 py-2 font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-swiss-blue transition-colors"
+                          >
+                             Watch on Vimeo <ArrowUpRight size={14} />
+                          </a>
+                       </div>
+                    )}
                   </div>
 
-                  {!isEditing && (
+                  {/* Conditionally Render Details Button */}
+                  {!isEditing && !project.hideDetailsLink && (
                     <div className="mt-auto pt-6 border-t border-swiss-black/10">
                         <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-swiss-red transition-colors group">
                             View Details 

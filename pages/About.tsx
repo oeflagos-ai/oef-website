@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ABOUT_SIDEBAR_TITLE, ABOUT_SIDEBAR_SUMMARY, ABOUT_SECTIONS, TEAM_MEMBERS, LOGO_SRC } from '../constants';
 
@@ -78,7 +79,10 @@ const About: React.FC = () => {
                       <div className="absolute inset-0 bg-swiss-blue/0 group-hover:bg-swiss-blue/10 transition-colors duration-300"></div>
                     </div>
                     <h3 className="text-xl font-black mb-1">{member.name}</h3>
-                    <p className="text-xs font-bold text-swiss-red uppercase tracking-wider mb-3 border-b border-swiss-black/10 pb-2">{member.role}</p>
+                    <p className="text-xs font-bold text-swiss-red uppercase tracking-wider mb-2 border-b border-swiss-black/10 pb-2">{member.role}</p>
+                    {member.almaMater && (
+                      <p className="text-xs font-bold text-swiss-black/60 uppercase tracking-wider mb-3">{member.almaMater}</p>
+                    )}
                     <p className="text-sm text-gray-700 leading-relaxed font-medium">{member.bio}</p>
                   </div>
                 ))}
