@@ -8,12 +8,12 @@ import { NavItem, Project, TeamMember } from './types';
 export const BRAND_NAME = "OLAGBAJUMO EDUCATION FOUNDATION";
 
 // SVG Logo representation of the provided double-circle logo
-export const LOGO_SRC = `data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23111111' stroke-width='10'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23111111' stroke-width='10'/%3E%3C/svg%3E`;
+export const LOGO_SRC = "https://photos.app.goo.gl/trXas7oNNTuGoAqu9"
 
 // BACKGROUND IMAGE CONFIGURATION
 // Paste a URL here (e.g., "https://example.com/image.jpg") to set a background image for the entire site.
 // Leave empty "" to use the default geometric grid pattern.
-export const SITE_BACKGROUND_IMAGE = "";
+export const SITE_BACKGROUND_IMAGE = "https://srm360.org/wp-content/uploads/2024/11/cirrus-clouds.jpg";
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
@@ -40,26 +40,26 @@ export const ABOUT_SECTIONS = [
   },
   {
     title: "Our Approach",
-    content: `We collaborate with educators, technologists, and policymakers to build open platforms, curate diverse curriculum, and support community-led learning initiatives. By leveraging open-source technology and creative commons licensing, we scale our impact globally.`
+    content: `We collaborate with educators, technologists, and policymakers to build modern platforms, curate diverse curriculum, and support community-led learning initiatives. By leveraging technology, we will scale our impact globally. Our first initiative, Abigail Academy, addresses the United Nations (UN) Sustainable Development Goal (SDG)—Goal 4: Quality Education. We aim to ensure that our students can define who they are, identify their interests, and map out the vision that will enable them to secure their future.`
   },
   {
     title: "History",
-    content: `Founded with the belief that knowledge belongs to the public, the OEFoundation has grown from a small collective of teachers into an international non-profit organization supporting thousands of students.`
+    content: `The Olagbajumo Education Foundation (OEF) is a charitable, non-profit organization established to foster in persons a zeal for seeking knowledge. OEF seeks to impact young people by providing a toolkit for them to know their place in an evolving world.`
   }
 ];
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: "Dr. Sarah Al-Fayed",
-    role: "Executive Director",
-    bio: "Former Dean of Digital Learning with 15 years of experience in EdTech policy.",
-    image: "https://picsum.photos/400/400?grayscale"
+    name: "Olafare Olagbaju",
+    role: "Founder and Chairman",
+    bio: "Systems thinker. Educator. Entrepreneur.",
+    image: "https://photos.app.goo.gl/LgyjjF21LmmYHJFS6"
   },
   {
-    name: "James Sterling",
-    role: "Head of Operations",
-    bio: "Specializes in logistics for non-profit distribution networks in developing regions.",
-    image: "https://picsum.photos/401/401?grayscale"
+    name: "Ifeanyi Olagbaju",
+    role: "Trustee",
+    bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
+    image: "https://photos.app.goo.gl/G1VBjJPDy1r1SjBP8"
   }
 ];
 
@@ -67,33 +67,33 @@ export const TEAM_MEMBERS: TeamMember[] = [
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: "Open Syllabus Project",
-    description: "Creating a universal, adaptable syllabus repository for K-12 educators in under-resourced areas. This ongoing initiative focuses on STEM and Literacy core standards.",
+    title: "Abigail Academy",
+    description: "Building an institutional organism that enables learners to create feedback loops between the classroom and their external worlds. We lead with the question: “How can an educational institution create stronger mental models of understanding reality in students?” ",
     status: "Ongoing",
-    image: "https://picsum.photos/800/600?random=1"
+    image: "https://photos.app.goo.gl/jmXM6mJ4MnEe1dMc9"
   },
   {
     id: '2',
-    title: "Rural Connectivity Hubs",
-    description: "Deploying solar-powered offline learning servers to remote villages. These hubs provide access to Wikipedia, Khan Academy, and custom local content without internet.",
+    title: "Academy Lunch and Learn",
+    description: "A learning series transforming student perspectives on life outside school. This program connects students with professionals through a thematic, hour-long chat.",
     status: "Ongoing",
-    image: "https://picsum.photos/800/600?random=2"
+    image: "https://photos.app.goo.gl/z1cKcVH45xf2AqLv5"
   },
   {
     id: '3',
-    title: "Teacher Training Initiative",
-    description: "A comprehensive digital certification program for volunteer teachers. We provide mentorship, peer-review networks, and ongoing professional development resources.",
+    title: "Project Saber",
+    description: "In Project Saber, we are researching how technology can play a key role in learning and make processes engaging and playful.",
     status: "Ongoing",
-    image: "https://picsum.photos/800/600?random=3"
+    image: "https://photos.app.goo.gl/iTFtip8KaWy92F1u6"
   }
 ];
 
 // CONTACT INFO
 export const CONTACT_EMAIL = "oef.lagos@gmail.com";
-export const CONTACT_ADDRESS = "123 Innovation Drive, Zurich, Switzerland";
+export const CONTACT_ADDRESS = "Lagos, Nigeria.";
 export const FOOTER_TAGLINE = "Democratizing education by increasing access and community collaboration. Fostering in persons a zeal for seeking knowledge.";
 export const SOCIAL_LINKS = [
   { platform: "Twitter", url: "#" },
   { platform: "Instagram", url: "#" },
-  { platform: "LinkedIn", url: "#" }
+  { platform: "LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
 ];
