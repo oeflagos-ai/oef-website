@@ -35,11 +35,11 @@ export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation is ded
 // "About" Main Content Sections
 export const ABOUT_SECTIONS = [
   {
-    title: "The Vision",
+    title: "Vision",
     content: `We envision a world where high-quality educational resources are freely available to everyone, regardless of their geographic location or socioeconomic status. We believe that education is a fundamental human right and the most powerful tool for sustainable development.`
   },
   {
-    title: "Our Approach",
+    title: "Approach",
     content: `We collaborate with educators, technologists, and policymakers to build modern platforms, curate diverse curriculum, and support community-led learning initiatives. By leveraging technology, we will scale our impact globally. Our first initiative, Abigail Academy, addresses the United Nations (UN) Sustainable Development Goal (SDG)—Goal 4: Quality Education. We aim to ensure that our students can define who they are, identify their interests, and map out the vision that will enable them to secure their future.`
   },
 ];
