@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
   {
     id: '3',
     title: "Project Saber",
-    description: "In Project Saber, we are researching how technology can play a key role in learning and make processes engaging and playful.",
+    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful.",
     status: "Ongoing",
     image: "/OEFlogo.png"
   }
