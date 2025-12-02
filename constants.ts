@@ -49,7 +49,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Olafare Olagbaju",
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
-    image: "/Olafare.PNG" 
+    image: "/Olafare.jpg" 
   },
   {
     name: "Ifeanyi Olagbaju",
