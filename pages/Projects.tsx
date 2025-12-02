@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
-import { ArrowUpRight, Edit2, Save, X, RotateCcw } from 'lucide-react';
+import { ArrowUpRight, Edit2, Save, X } from 'lucide-react';
 
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
@@ -45,13 +45,6 @@ const Projects: React.FC = () => {
     setEditForm(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleReset = () => {
-    if (window.confirm('Are you sure you want to reset all projects to default? This will erase your changes.')) {
-      setProjects(PROJECTS);
-      localStorage.removeItem('oef_projects');
-    }
-  };
-
   return (
     <div className="w-full min-h-screen py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,13 +58,6 @@ const Projects: React.FC = () => {
               Our ongoing initiatives. Curated to highlight our active developments in transforming education.
             </p>
           </div>
-          <button 
-            onClick={handleReset}
-            className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-swiss-gray hover:text-swiss-red transition-colors"
-            title="Reset to default content"
-          >
-            <RotateCcw size={14} /> Reset Defaults
-          </button>
         </header>
 
         {/* Projects List */}

@@ -30,13 +30,13 @@ export const HOME_HERO_SUB = "Advancing education, research, and public engageme
 // ABOUT PAGE CONTENT (Rediet Abebe Style Structure)
 // "About" Sidebar Info
 export const ABOUT_SIDEBAR_TITLE = "Our Mission";
-export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation is dedicated to removing barriers to knowledge and fostering a global community of lifelong learners.";
+export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation removes barriers to knowledge acquisition in three areas: study, projects, and refinement. We shape a global community of lifelong learners.";
 
 // "About" Main Content Sections
 export const ABOUT_SECTIONS = [
   {
     title: "Vision",
-    content: `We envision a world where high-quality educational resources are freely available to everyone, regardless of their geographic location or socioeconomic status. We believe that education is a fundamental human right and the most powerful tool for sustainable development.`
+    content: `Accessible, high-quality educational resources available to everyone, regardless of their geographic location or socioeconomic status. We believe that education is a powerful tool for sustainable development.`
   },
   {
     title: "Approach",
@@ -49,13 +49,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Olafare Olagbaju",
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
-    image: "public\Olafare.PNG"
+    image: "/Olafare.PNG" 
   },
   {
     name: "Ifeanyi Olagbaju",
     role: "Trustee",
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
-    image: "public\Momther.jpg"
+    image: "/Ifeanyi.jpg"
   }
 ];
 
@@ -66,21 +66,21 @@ export const PROJECTS: Project[] = [
     title: "Abigail Academy",
     description: "Building an institutional organism that enables learners to create feedback loops between the classroom and their external worlds. We lead with the question: “How can an educational institution create stronger mental models of understanding reality in students?” ",
     status: "Ongoing",
-    image: "https://photos.app.goo.gl/jmXM6mJ4MnEe1dMc9"
+    image: "/Abigail Academy sq logo.jpeg"
   },
   {
     id: '2',
     title: "Academy Lunch and Learn",
     description: "A learning series transforming student perspectives on life outside school. This program connects students with professionals through a thematic, hour-long chat.",
     status: "Ongoing",
-    image: "https://photos.app.goo.gl/z1cKcVH45xf2AqLv5"
+    image: "/Academy Lunch and Learn.jpeg.png"
   },
   {
     id: '3',
     title: "Project Saber",
     description: "In Project Saber, we are researching how technology can play a key role in learning and make processes engaging and playful.",
     status: "Ongoing",
-    image: "https://photos.app.goo.gl/iTFtip8KaWy92F1u6"
+    image: "/Triangle.jpg"
   }
 ];
 

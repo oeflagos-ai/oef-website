@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
         
         <div className="border-l-4 border-swiss-red pl-8 md:pl-16 py-8">
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-swiss-black">
-            HELLO.
+            Drop us a line.
           </h1>
           
           <div className="space-y-10">
