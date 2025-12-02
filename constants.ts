@@ -89,7 +89,6 @@ export const CONTACT_EMAIL = "oef.lagos@gmail.com";
 export const CONTACT_ADDRESS = "Lagos, Nigeria.";
 export const FOOTER_TAGLINE = "Democratizing education by increasing access and community collaboration. Fostering in persons a zeal for seeking knowledge.";
 export const SOCIAL_LINKS = [
-  { platform: "Twitter", url: "#" },
-  { platform: "Instagram", url: "#" },
-  { platform: "LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
+  { platform: "Public Learning Archive", url: "https://vimeo.com/olagbajumoeducation" },
+  { platform: "Abigail Academy LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
 ];
