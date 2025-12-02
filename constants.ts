@@ -51,14 +51,14 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
     image: "/Olafare.jpg",
-    almaMater: "Harvard University"
+    almaMater: "Xavier University '16, Cornell University '23"
   },
   {
     name: "Ifeanyi Olagbaju",
     role: "Trustee",
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
     image: "/Ifeanyi.jpg",
-    almaMater: "University of Lagos"
+    almaMater: "University of Jos '93, Villanova University '09, University of Sussex '23"
   }
 ];
 
@@ -79,7 +79,7 @@ export const PROJECTS: Project[] = [
     status: "Ongoing",
     image: "/Academy Lunch and Learn.jpeg.png",
     embedUrl: "https://vimeo.com/olagbajumoeducation",
-    hideDetailsLink: true
+    hideDetailsLink: false
   },
   {
     id: '3',
