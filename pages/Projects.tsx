@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
@@ -184,17 +185,15 @@ const Projects: React.FC = () => {
                     
                     {/* Media Embed / Link Block for Vimeo */}
                     {!isEditing && project.embedUrl && (
-                       <div className="mb-6 p-4 bg-swiss-black text-swiss-bg rounded-sm border-l-4 border-swiss-red">
-                          <h4 className="font-bold uppercase tracking-widest text-xs mb-2 text-swiss-gray">Featured Media</h4>
-                          <p className="text-sm mb-4 opacity-80">Watch our latest discussions and series on Vimeo.</p>
-                          <a 
-                             href={project.embedUrl} 
-                             target="_blank" 
-                             rel="noopener noreferrer" 
-                             className="inline-flex items-center gap-2 bg-swiss-blue text-white px-4 py-2 font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-swiss-blue transition-colors"
-                          >
-                             Watch on Vimeo <ArrowUpRight size={14} />
-                          </a>
+                       <div className="mb-8 w-full aspect-video bg-black shadow-lg">
+                          <iframe 
+                            src={project.embedUrl} 
+                            className="w-full h-full" 
+                            frameBorder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                            allowFullScreen
+                            title={project.title}
+                          ></iframe>
                        </div>
                     )}
                   </div>

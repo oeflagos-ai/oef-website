@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     description: "A learning series transforming student perspectives on life outside school. This program connects students with professionals through a thematic, hour-long chat.",
     status: "Ongoing",
     image: "/project2.png",
-    embedUrl: "https://vimeo.com/olagbajumoeducation",
+    embedUrl: "https://player.vimeo.com/video/1142406102?badge=0&autopause=0&player_id=0&app_id=58479",
     hideDetailsLink: true
   },
   {
