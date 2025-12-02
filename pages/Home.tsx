@@ -1,22 +1,14 @@
 import React from 'react';
 import { HOME_HERO_TEXT_1, HOME_HERO_TEXT_2, HOME_HERO_SUB } from '../constants';
 import { ArrowRight, Users, Globe } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
     <div className="w-full">
-      {/* Hero Section - Sky Background behind text, above marquee */}
+      {/* Hero Section - Removed sky background to match other pages */}
       <section 
-        className="min-h-[85vh] flex flex-col justify-center px-4 md:px-12 lg:px-24 border-b-4 border-swiss-black relative overflow-hidden bg-cover bg-center bg-no-repeat bg-swiss-blue"
-        style={{ 
-          // High-resolution Blue Sky with Clouds
-          backgroundImage: "url('https://images.unsplash.com/photo-1604079628040-94301bb21b91?q=80&w=2687&auto=format&fit=crop')"
-        }}
+        className="min-h-[85vh] flex flex-col justify-center px-4 md:px-12 lg:px-24 border-b-4 border-swiss-black relative overflow-hidden"
       >
-        {/* Optional: Very subtle overlay to ensure text pops if clouds are too white, but keeping it minimal */}
-        <div className="absolute inset-0 bg-white/10 pointer-events-none"></div>
-
         <div className="max-w-7xl w-full relative z-10 pt-20 pb-20">
           <div className="relative">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.85] mb-8 drop-shadow-sm">
@@ -30,18 +22,18 @@ const Home: React.FC = () => {
           </div>
           
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-12 mt-16">
-            {/* Subtext with frosted glass effect for readability against clouds */}
-            <p className="text-lg md:text-2xl font-bold max-w-2xl leading-tight border-l-8 border-swiss-red pl-8 pr-4 py-6 backdrop-blur-md bg-white/30 rounded-r-lg shadow-sm">
+            {/* Subtext - Removed frosted glass effect since background is now clean */}
+            <p className="text-lg md:text-2xl font-bold max-w-2xl leading-tight border-l-8 border-swiss-red pl-8 pr-4 py-6">
               {HOME_HERO_SUB}
             </p>
             
-            <Link 
-              to="/about"
+            <a 
+              href="#/about"
               className="group flex items-center gap-4 text-base font-bold uppercase tracking-widest bg-swiss-black text-swiss-bg px-6 py-3 md:px-8 md:py-4 hover:bg-swiss-red transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:translate-x-[2px] hover:translate-y-[2px]"
             >
               Read our mission
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -89,7 +81,7 @@ const Home: React.FC = () => {
 
       {/* Visual Navigation Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[35vh]">
-        <Link to="/projects" className="border-b-2 md:border-b-0 md:border-r-2 border-swiss-black p-10 md:p-12 flex flex-col justify-between bg-swiss-blue text-white group hover:bg-swiss-black transition-colors duration-500 relative overflow-hidden">
+        <a href="#/projects" className="border-b-2 md:border-b-0 md:border-r-2 border-swiss-black p-10 md:p-12 flex flex-col justify-between bg-swiss-blue text-white group hover:bg-swiss-black transition-colors duration-500 relative overflow-hidden">
            {/* Decorative big number */}
            <span className="absolute -bottom-10 -right-10 text-[12rem] font-black opacity-10 leading-none group-hover:scale-110 transition-transform duration-700">01</span>
           <h3 className="text-3xl font-black mb-4 relative z-10">PROJECTS</h3>
@@ -97,8 +89,8 @@ const Home: React.FC = () => {
              <p className="text-base md:text-lg opacity-90 font-medium">Learn about our initiatives.</p>
              <ArrowRight className="transform group-hover:translate-x-2 transition-transform" />
           </div>
-        </Link>
-        <Link to="/contact" className="p-10 md:p-12 flex flex-col justify-between group hover:bg-swiss-red hover:text-white transition-colors duration-500 bg-swiss-bg relative overflow-hidden">
+        </a>
+        <a href="#/contact" className="p-10 md:p-12 flex flex-col justify-between group hover:bg-swiss-red hover:text-white transition-colors duration-500 bg-swiss-bg relative overflow-hidden">
             {/* Decorative big number */}
             <span className="absolute -bottom-10 -right-10 text-[12rem] font-black text-swiss-black opacity-5 group-hover:opacity-10 leading-none group-hover:scale-110 transition-transform duration-700">02</span>
            <h3 className="text-3xl font-black mb-4 relative z-10">JOIN US</h3>
@@ -106,7 +98,7 @@ const Home: React.FC = () => {
              <p className="text-base md:text-lg opacity-90 font-medium">Be part of the change.</p>
              <ArrowRight className="transform group-hover:translate-x-2 transition-transform" />
           </div>
-        </Link>
+        </a>
       </section>
 
       <style>{`

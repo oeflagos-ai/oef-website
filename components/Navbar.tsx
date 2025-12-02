@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { BRAND_NAME, NAV_ITEMS, LOGO_SRC } from '../constants';
 import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState(window.location.hash.slice(1) || '/');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentPath(window.location.hash.slice(1) || '/');
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-swiss-bg/95 backdrop-blur-sm border-b-2 border-swiss-black">
@@ -12,7 +20,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo / Brand */}
           <div className="flex-shrink-0 flex items-center gap-4">
-            <NavLink to="/" className="flex items-center gap-3 group">
+            <a href="#/" className="flex items-center gap-3 group">
               <img 
                 src={LOGO_SRC} 
                 alt="OEF Logo" 
@@ -21,24 +29,25 @@ const Navbar: React.FC = () => {
               <span className="text-base md:text-lg font-display font-black tracking-tighter hover:text-swiss-red transition-colors duration-300 max-w-[200px] md:max-w-none leading-none">
                 {BRAND_NAME}
               </span>
-            </NavLink>
+            </a>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `text-xs md:text-sm font-bold uppercase tracking-widest hover:text-swiss-red transition-colors duration-200 ${
+            {NAV_ITEMS.map((item) => {
+              const isActive = currentPath === item.path;
+              return (
+                <a
+                  key={item.path}
+                  href={`#${item.path}`}
+                  className={`text-xs md:text-sm font-bold uppercase tracking-widest hover:text-swiss-red transition-colors duration-200 ${
                     isActive ? 'text-swiss-red decoration-2 underline-offset-4' : 'text-swiss-black'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -57,20 +66,21 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="md:hidden bg-swiss-bg border-b-2 border-swiss-black absolute w-full">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
-            {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `block px-3 py-4 text-xl font-black uppercase tracking-tighter ${
+            {NAV_ITEMS.map((item) => {
+              const isActive = currentPath === item.path;
+              return (
+                <a
+                  key={item.path}
+                  href={`#${item.path}`}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-4 text-xl font-black uppercase tracking-tighter ${
                     isActive ? 'text-swiss-red' : 'text-swiss-black'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
         </div>
       )}
