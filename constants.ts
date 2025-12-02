@@ -49,13 +49,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Olafare Olagbaju",
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
-    image: "https://photos.app.goo.gl/LgyjjF21LmmYHJFS6"
+    image: "public\Olafare.PNG"
   },
   {
     name: "Ifeanyi Olagbaju",
     role: "Trustee",
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
-    image: "https://photos.app.goo.gl/G1VBjJPDy1r1SjBP8"
+    image: "public\Momther.jpg"
   }
 ];
 
