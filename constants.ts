@@ -91,7 +91,7 @@ export const FOOTER_TAGLINE = "Democratizing education by increasing access and 
 export const FOOTER_REGISTRATION = "Registered Under Part F of CAMA 2020 as an Incorporated Trustee by the Corporate Affairs Commission, Federal Republic of Nigeria.";
 
 export const SOCIAL_LINKS = [
-  { platform: "Public Learning Archive", url: "https://vimeo.com/olagbajumoeducation" },
+  { platform: "Academy Lunch and Learn", url: "https://vimeo.com/olagbajumoeducation" },
   { platform: "Book a Free Consultation", url: "https://calendar.app.google/rxNiCF47KRXC7vG77" },
   { platform: "Abigail Academy LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
 ];
