@@ -192,6 +192,7 @@ const Projects: React.FC = () => {
                             frameBorder="0" 
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                             allowFullScreen
+                            referrerPolicy="strict-origin-when-cross-origin"
                             title={project.title}
                           ></iframe>
                        </div>
