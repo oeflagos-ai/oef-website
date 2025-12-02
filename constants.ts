@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     description: "A learning series transforming student perspectives on life outside school. This program connects students with professionals through a thematic, hour-long chat.",
     status: "Ongoing",
     image: "/project2.png",
-    embedUrl: "<iframe title="vimeo-player" src="https://player.vimeo.com/video/1129844678?h=de2a568633" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>",
+    embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>",
     hideDetailsLink: true
   },
   {
