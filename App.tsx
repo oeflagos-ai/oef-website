@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(window.location.hash.slice(1) || '/');
@@ -37,9 +38,11 @@ const App: React.FC = () => {
   }
 
   return (
-    <Layout>
-      <Component />
-    </Layout>
+    <HelmetProvider>
+      <Layout>
+        <Component />
+      </Layout>
+    </HelmetProvider>
   );
 };
 

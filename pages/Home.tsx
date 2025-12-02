@@ -1,10 +1,16 @@
 import React from 'react';
 import { HOME_HERO_TEXT_1, HOME_HERO_TEXT_2, HOME_HERO_SUB } from '../constants';
 import { ArrowRight, Users, Globe } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
   return (
     <div className="w-full">
+      <SEO 
+        title="Home" 
+        description="Olagbajumo Education Foundation - Modernising Learning, Together. Advancing education, research, and public engagement."
+      />
+
       {/* Hero Section - Removed sky background to match other pages */}
       <section 
         className="min-h-[85vh] flex flex-col justify-center px-4 md:px-12 lg:px-24 border-b-4 border-swiss-black relative overflow-hidden"
@@ -22,7 +28,6 @@ const Home: React.FC = () => {
           </div>
           
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-12 mt-16">
-            {/* Subtext - Removed frosted glass effect since background is now clean */}
             <p className="text-lg md:text-2xl font-bold max-w-2xl leading-tight border-l-8 border-swiss-red pl-8 pr-4 py-6">
               {HOME_HERO_SUB}
             </p>
@@ -82,7 +87,6 @@ const Home: React.FC = () => {
       {/* Visual Navigation Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[35vh]">
         <a href="#/projects" className="border-b-2 md:border-b-0 md:border-r-2 border-swiss-black p-10 md:p-12 flex flex-col justify-between bg-swiss-blue text-white group hover:bg-swiss-black transition-colors duration-500 relative overflow-hidden">
-           {/* Decorative big number */}
            <span className="absolute -bottom-10 -right-10 text-[12rem] font-black opacity-10 leading-none group-hover:scale-110 transition-transform duration-700">01</span>
           <h3 className="text-3xl font-black mb-4 relative z-10">PROJECTS</h3>
           <div className="mt-auto relative z-10 flex items-center justify-between">
@@ -91,7 +95,6 @@ const Home: React.FC = () => {
           </div>
         </a>
         <a href="#/contact" className="p-10 md:p-12 flex flex-col justify-between group hover:bg-swiss-red hover:text-white transition-colors duration-500 bg-swiss-bg relative overflow-hidden">
-            {/* Decorative big number */}
             <span className="absolute -bottom-10 -right-10 text-[12rem] font-black text-swiss-black opacity-5 group-hover:opacity-10 leading-none group-hover:scale-110 transition-transform duration-700">02</span>
            <h3 className="text-3xl font-black mb-4 relative z-10">JOIN US</h3>
            <div className="mt-auto relative z-10 flex items-center justify-between">

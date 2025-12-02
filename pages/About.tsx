@@ -1,18 +1,21 @@
-
 import React from 'react';
 import { ABOUT_SIDEBAR_TITLE, ABOUT_SIDEBAR_SUMMARY, ABOUT_SECTIONS, TEAM_MEMBERS, LOGO_SRC } from '../constants';
+import SEO from '../components/SEO';
 
 const About: React.FC = () => {
   return (
     <div className="w-full min-h-screen">
+      <SEO 
+        title="About Us" 
+        description="Learn about the Olagbajumo Education Foundation's mission to remove barriers to knowledge through study, projects, and refinement."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-20">
           
-          {/* LEFT COLUMN (Rediet Abebe Style - Sticky Sidebar Info) */}
+          {/* LEFT COLUMN */}
           <div className="md:col-span-4 lg:col-span-3">
             <div className="md:sticky md:top-28 bg-white/60 p-6 border-2 border-swiss-black shadow-[8px_8px_0px_0px_rgba(17,17,17,0.1)]">
-              {/* Logo Display - Updated to show exactly as is without circular cropping */}
               <div className="mb-6 w-full flex justify-start">
                  <img 
                    src={LOGO_SRC} 

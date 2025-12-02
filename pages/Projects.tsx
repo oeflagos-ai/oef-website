@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 import { ArrowUpRight, Edit2, Save, X } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
@@ -48,6 +48,10 @@ const Projects: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen py-12 md:py-20">
+      <SEO 
+        title="Our Projects" 
+        description="Explore our ongoing initiatives like Abigail Academy and Project Saber, transforming education through technology and community."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <header className="mb-16 border-b-4 border-swiss-black pb-10 bg-white/50 backdrop-blur-md p-6 md:p-8 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-end gap-6">

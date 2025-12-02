@@ -1,10 +1,14 @@
-
 import React from 'react';
 import { CONTACT_EMAIL, CONTACT_ADDRESS, SOCIAL_LINKS } from '../constants';
+import SEO from '../components/SEO';
 
 const Contact: React.FC = () => {
   return (
     <div className="w-full min-h-[80vh] flex items-center justify-center bg-swiss-bg">
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with Olagbajumo Education Foundation in Lagos, Nigeria."
+      />
       <div className="max-w-5xl mx-auto px-4 w-full">
         
         <div className="border-l-4 border-swiss-red pl-8 md:pl-16 py-8">
