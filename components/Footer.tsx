@@ -1,5 +1,5 @@
 import React from 'react';
-import { BRAND_NAME, CONTACT_EMAIL, FOOTER_TAGLINE } from '../constants';
+import { BRAND_NAME, CONTACT_EMAIL, FOOTER_TAGLINE, FOOTER_REGISTRATION } from '../constants';
 
 const Footer: React.FC = () => {
   return (
@@ -18,6 +18,9 @@ const Footer: React.FC = () => {
           </a>
           <p className="text-xs text-swiss-gray opacity-80">
             © {new Date().getFullYear()} Olagbajumo Education Foundation. All rights reserved.
+          </p>
+          <p className="text-[10px] text-swiss-gray opacity-60 mt-2 max-w-sm md:text-right leading-tight">
+            {FOOTER_REGISTRATION}
           </p>
         </div>
       </div>
