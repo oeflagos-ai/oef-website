@@ -8,7 +8,7 @@ import { NavItem, Project, TeamMember } from './types';
 export const BRAND_NAME = "OLAGBAJUMO EDUCATION FOUNDATION";
 
 // SVG Logo representation of the provided double-circle logo
-export const LOGO_SRC = "https://photos.app.goo.gl/trXas7oNNTuGoAqu9"
+export const LOGO_SRC = `data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23111111' stroke-width='10'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23111111' stroke-width='10'/%3E%3C/svg%3E`;
 
 // BACKGROUND IMAGE CONFIGURATION
 // Paste a URL here (e.g., "https://example.com/image.jpg") to set a background image for the entire site.
