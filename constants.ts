@@ -35,7 +35,7 @@ export const PARTNERSHIPS_MARQUEE_TEXT = "Thank you for your patience. Partnersh
 // ABOUT PAGE CONTENT (Rediet Abebe Style Structure)
 // "About" Sidebar Info
 export const ABOUT_SIDEBAR_TITLE = "Our Mission";
-export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation removes barriers to knowledge acquisition in three areas: study, projects, and refinement. We shape a global community of lifelong learners.";
+export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation removes barriers to knowledge acquisition by focusing on three key areas: study, projects, and refinement. We nurture a global community of lifelong learners.";
 
 // "About" Main Content Sections
 export const ABOUT_SECTIONS = [
@@ -55,14 +55,16 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
     image: "/Olafare.jpg",
-    almaMater: "Xavier University '16, Cornell University '23"
+    // Use pipe '|' to separate lines vertically
+    almaMater: "Xavier University '16 (BA, Liberal Arts, Economics, Political Science)|Cornell University '23 (Master of Public Administration)"
   },
   {
     name: "Ifeanyi Olagbaju",
     role: "Trustee",
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
     image: "/Ifeanyi.jpg",
-    almaMater: "University of Jos '93, Villanova University '09, University of Sussex '23"
+    // Use pipe '|' to separate lines vertically
+    almaMater: "University of Jos '93 (BS, Business Administration)|Villanova University '09 (GCERT, Human Resource Management)|University of Sussex '23 (MA, Education)"
   }
 ];
 

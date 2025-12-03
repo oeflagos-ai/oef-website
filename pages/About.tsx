@@ -34,7 +34,6 @@ const About: React.FC = () => {
               <nav className="flex flex-col space-y-2 text-xs font-bold uppercase tracking-widest text-swiss-gray">
                  <a href="#vision" className="hover:text-swiss-red hover:translate-x-2 transition-all block">Vision</a>
                  <a href="#approach" className="hover:text-swiss-red hover:translate-x-2 transition-all block">Approach</a>
-                 <a href="#history" className="hover:text-swiss-red hover:translate-x-2 transition-all block">History</a>
                  <a href="#team" className="hover:text-swiss-red hover:translate-x-2 transition-all block">Team</a>
               </nav>
             </div>
