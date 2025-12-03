@@ -56,7 +56,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: "Systems thinker. Educator. Entrepreneur.",
     image: "/Olafare.jpg",
     // Use pipe '|' to separate lines vertically
-    almaMater: "Xavier University '16 (BA, Liberal Arts, Economics, Political Science) | Cornell University '23 (Master of Public Administration)"
+    almaMater: "Xavier University '16 (BA, Liberal Arts) | Cornell University '23 (MPA)"
   },
   {
     name: "Ifeanyi Olagbaju",
@@ -64,7 +64,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
     image: "/Ifeanyi.jpg",
     // Use pipe '|' to separate lines vertically
-    almaMater: "University of Jos '93 (BS, Business Administration) | Villanova University '09 (GCERT, Human Resource Management) | University of Sussex '23 (MA, Education)"
+    almaMater: "University of Jos '93 (BS, Business Administration) | Villanova University '09 (GCERT, HRM) | University of Sussex '23 (MA, Education)"
   }
 ];
 
