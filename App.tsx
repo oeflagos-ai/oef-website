@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Partnerships from './pages/Partnerships';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
@@ -27,6 +29,9 @@ const App: React.FC = () => {
       break;
     case '/projects':
       Component = Projects;
+      break;
+    case '/partnerships':
+      Component = Partnerships;
       break;
     case '/contact':
       Component = Contact;

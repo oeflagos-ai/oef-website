@@ -20,6 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
+  { label: 'Partnerships', path: '/partnerships' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -27,6 +28,9 @@ export const NAV_ITEMS: NavItem[] = [
 export const HOME_HERO_TEXT_1 = "MODERNISING";
 export const HOME_HERO_TEXT_2 = "LEARNING, TOGETHER";
 export const HOME_HERO_SUB = "Advancing education, research, and public engagement in areas critical to the future of educational systems.";
+
+// PARTNERSHIPS PAGE CONTENT
+export const PARTNERSHIPS_MARQUEE_TEXT = "Thank you for your patience. Partnerships will be announced shortly.";
 
 // ABOUT PAGE CONTENT (Rediet Abebe Style Structure)
 // "About" Sidebar Info

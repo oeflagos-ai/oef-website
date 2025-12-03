@@ -7,8 +7,9 @@ import SEO from '../components/SEO';
 
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
+  // UPDATED KEY: 'oef_projects_v3' forces the browser to load fresh data from constants.ts
   const [projects, setProjects] = useState<Project[]>(() => {
-    const saved = localStorage.getItem('oef_projects');
+    const saved = localStorage.getItem('oef_projects_v3');
     return saved ? JSON.parse(saved) : PROJECTS;
   });
 
@@ -20,7 +21,7 @@ const Projects: React.FC = () => {
 
   // Persist to localStorage whenever projects change
   useEffect(() => {
-    localStorage.setItem('oef_projects', JSON.stringify(projects));
+    localStorage.setItem('oef_projects_v3', JSON.stringify(projects));
   }, [projects]);
 
   const startEditing = (project: Project) => {
@@ -184,11 +185,12 @@ const Projects: React.FC = () => {
                     )}
                     
                     {/* Media Embed / Link Block for Vimeo */}
+                    {/* Uses padding-bottom percentage hack to ensure 16:9 ratio on ALL screens */}
                     {!isEditing && project.embedUrl && (
-                       <div className="mb-8 w-full aspect-video bg-black shadow-lg">
+                       <div className="mb-8 w-full relative pt-[56.25%] bg-black shadow-lg">
                           <iframe 
                             src={project.embedUrl} 
-                            className="w-full h-full" 
+                            className="absolute top-0 left-0 w-full h-full" 
                             frameBorder="0" 
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                             allowFullScreen
