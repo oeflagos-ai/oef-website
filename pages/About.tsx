@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ABOUT_SIDEBAR_TITLE, ABOUT_SIDEBAR_SUMMARY, ABOUT_SECTIONS, TEAM_MEMBERS, LOGO_SRC } from '../constants';
 import SEO from '../components/SEO';
@@ -83,7 +84,13 @@ const About: React.FC = () => {
                     <h3 className="text-xl font-black mb-1">{member.name}</h3>
                     <p className="text-xs font-bold text-swiss-red uppercase tracking-wider mb-2 border-b border-swiss-black/10 pb-2">{member.role}</p>
                     {member.almaMater && (
-                      <p className="text-xs font-bold text-swiss-black/60 uppercase tracking-wider mb-3">{member.almaMater}</p>
+                      <div className="mb-3">
+                        {member.almaMater.split('|').map((line, i) => (
+                          <p key={i} className="text-xs font-bold text-swiss-black/60 uppercase tracking-wider mb-0.5">
+                            {line.trim()}
+                          </p>
+                        ))}
+                      </div>
                     )}
                     <p className="text-sm text-gray-700 leading-relaxed font-medium">{member.bio}</p>
                   </div>
