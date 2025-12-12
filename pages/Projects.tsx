@@ -7,9 +7,9 @@ import SEO from '../components/SEO';
 
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
-  // UPDATED KEY: 'oef_projects_v3' forces the browser to load fresh data from constants.ts
   const [projects, setProjects] = useState<Project[]>(() => {
-    const saved = localStorage.getItem('oef_projects_v3');
+    // UPDATED KEY: 'oef_projects_v5' to ensure new linkText properties are loaded
+    const saved = localStorage.getItem('oef_projects_v5');
     return saved ? JSON.parse(saved) : PROJECTS;
   });
 
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
 
   // Persist to localStorage whenever projects change
   useEffect(() => {
-    localStorage.setItem('oef_projects_v3', JSON.stringify(projects));
+    localStorage.setItem('oef_projects_v5', JSON.stringify(projects));
   }, [projects]);
 
   const startEditing = (project: Project) => {
@@ -184,8 +184,6 @@ const Projects: React.FC = () => {
                       </>
                     )}
                     
-                    {/* Media Embed / Link Block for Vimeo */}
-                    {/* Uses padding-bottom percentage hack to ensure 16:9 ratio on ALL screens */}
                     {!isEditing && project.embedUrl && (
                        <div className="mb-8 w-full relative pt-[56.25%] bg-black shadow-lg">
                           <iframe 
@@ -204,12 +202,15 @@ const Projects: React.FC = () => {
                   {/* Conditionally Render Details Button */}
                   {!isEditing && !project.hideDetailsLink && (
                     <div className="mt-auto pt-6 border-t border-swiss-black/10">
-                        <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-swiss-red transition-colors group">
-                            View Details 
+                        <a 
+                          href={project.link || "#"}
+                          className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-swiss-red transition-colors group"
+                        >
+                            {project.linkText || "View Details"}
                             <span className="bg-swiss-black text-swiss-bg rounded-full p-1 group-hover:bg-swiss-red transition-colors">
                                 <ArrowUpRight size={14} />
                             </span>
-                        </button>
+                        </a>
                     </div>
                   )}
                 </div>

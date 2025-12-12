@@ -90,12 +90,72 @@ export const PROJECTS: Project[] = [
   {
     id: '3',
     title: "Project Saber",
-    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful.",
+    description: "Closing the Data Vacuum in African Education. Click 'View Details' to access the pitch deck.",
     status: "Ongoing",
     image: "/project3.png",
-    hideDetailsLink: true
+    hideDetailsLink: false,
+    embedUrl: "",
+    link: "#/saber",
+    linkText: "View Pitch Deck" // Custom text for this project
   }
 ];
+
+// ==========================================
+// SABER DECK DATA (EDITABLE GRAPHICS)
+// ==========================================
+
+export const SABER_DECK_DATA = {
+  // Financials Table Data
+  financials: [
+    { period: "Mo 3–6", activity: "MVP + Soft Pilots", rev: "$0", burn: "~$7k/mo", highlight: false },
+    { period: "Mo 6–9", activity: "Early Revenue", rev: "$12k–25k", burn: "~$8k/mo", highlight: true },
+    { period: "Mo 9–12", activity: "NGO Programs", rev: "+$20k–40k", burn: "~$9k/mo", highlight: true },
+    { period: "Mo 12–18", activity: "Cluster Deals", rev: "+$75k–120k", burn: "~$10k/mo", highlight: true },
+    { period: "Mo 18–24", activity: "Expansion", rev: "$150k+", burn: "~$12k/mo", highlight: true },
+  ],
+  financialTotals: {
+    label: "Total Rev (24mo)",
+    value: "$250k–$400k",
+    runway: "Runway: 24–30 months ($400k raise)"
+  },
+  // Burn Structure
+  burnStructure: [
+    { role: "Full-stack Engineer", cost: "$1.5k–$2.5k/mo" },
+    { role: "Design/Ops (Contract)", cost: "$600–$1000/mo" },
+    { role: "Cloud/AI Infra", cost: "$500–$1.2k/mo" },
+  ],
+  totalBurn: "Total Early Burn: $6k–$9k/month",
+  // Use of Funds Chart Data (Percentages must sum to 100 roughly for logic, but here acts as labels)
+  useOfFunds: [
+    { label: "Product & Engineering", amount: "$160k", pct: "40%", desc: "Core engineer (24mo), contract design, AI infra.", colorClass: "bg-swiss-black" },
+    { label: "Pilots & Evidence", amount: "$80k", pct: "20%", desc: "4–6 school pilots, impact metrics.", colorClass: "bg-swiss-blue" },
+    { label: "Revenue Generation", amount: "$80k", pct: "20%", desc: "Institutional licensing, cluster expansion.", colorClass: "bg-swiss-gray" },
+    { label: "Founder Admin", amount: "$40k", pct: "10%", desc: "", colorClass: "bg-swiss-black/80" },
+    { label: "Buffer", amount: "$40k", pct: "10%", desc: "", colorClass: "bg-swiss-black/60" },
+  ]
+};
+
+// ==========================================
+// LUNCH & LEARN PAGE CONFIGURATION
+// ==========================================
+
+export const LUNCH_LEARN_CONFIG = {
+  date: "December 20, 2025",
+  time: "11:00 AM West Central Africa",
+  location: "Online via Zoom",
+  rsvpLink: "https://us06web.zoom.us/meeting/register/kOATxQCSRnCxiQJuGCIKMQ",
+  
+  title: "THOSE\nWHO\nDARE.",
+  subtitle: "Building a Life Beyond the Script.",
+  
+  speakerName: "Uyeme Itsueli",
+  speakerInitials: "UI",
+  speakerRole: "Executive Director, Relate Africa",
+  speakerBioMain: "Uyeme is a seasoned Development Professional and Communications Strategist who blends creativity, analytical discipline, and a passion for social development.",
+  speakerBioSub: "Currently serving as the Executive Director of Relate Africa, a Lagos-based nonprofit, she empowers working women across diverse backgrounds. Under her leadership, the organization trained over 100 female traders in Idumota Market on financial literacy and marketing.",
+  
+  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on using storytelling as a tool for social change and creating impact beyond traditional career scripts."
+};
 
 // CONTACT INFO
 export const CONTACT_EMAIL = "oef.lagos@gmail.com";

@@ -5,6 +5,7 @@ export interface Project {
   description: string;
   image: string;
   link?: string;
+  linkText?: string; // Custom text for the link button (e.g., "View Deck", "View Flyer")
   status: 'Ongoing' | 'Completed' | 'Planned';
   hideDetailsLink?: boolean;
   embedUrl?: string;
