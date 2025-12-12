@@ -61,7 +61,7 @@ const Projects: React.FC = () => {
                 return (
                   <a 
                     key={i} 
-                    href="#/saber" 
+                    href={project.link || "#/saber"} 
                     className="text-inherit no-underline cursor-text outline-none"
                     title="" // Empty title so no tooltip appears
                   >
