@@ -8,8 +8,8 @@ import SEO from '../components/SEO';
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
   const [projects, setProjects] = useState<Project[]>(() => {
-    // UPDATED KEY: 'oef_projects_v5' to ensure new linkText properties are loaded
-    const saved = localStorage.getItem('oef_projects_v5');
+    // UPDATED KEY: 'oef_projects_v6' to ensure new description with 'key' is loaded
+    const saved = localStorage.getItem('oef_projects_v6');
     return saved ? JSON.parse(saved) : PROJECTS;
   });
 
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
 
   // Persist to localStorage whenever projects change
   useEffect(() => {
-    localStorage.setItem('oef_projects_v5', JSON.stringify(projects));
+    localStorage.setItem('oef_projects_v6', JSON.stringify(projects));
   }, [projects]);
 
   const startEditing = (project: Project) => {
@@ -46,6 +46,36 @@ const Projects: React.FC = () => {
 
   const handleChange = (field: keyof Project, value: string) => {
     setEditForm(prev => ({ ...prev, [field]: value }));
+  };
+
+  // Helper to render description with hidden link for Saber Deck (Project ID '3')
+  const renderDescription = (project: Project) => {
+    // Check if it's Project Saber (ID '3') and contains the word 'key'
+    if (project.id === '3') {
+      const parts = project.description.split(/(\bkey\b)/i);
+      if (parts.length > 1) {
+        return (
+          <>
+            {parts.map((part, i) => {
+              if (part.toLowerCase() === 'key') {
+                return (
+                  <a 
+                    key={i} 
+                    href="#/saber" 
+                    className="text-inherit no-underline cursor-text outline-none"
+                    title="" // Empty title so no tooltip appears
+                  >
+                    {part}
+                  </a>
+                );
+              }
+              return <span key={i}>{part}</span>;
+            })}
+          </>
+        );
+      }
+    }
+    return project.description;
   };
 
   return (
@@ -179,7 +209,7 @@ const Projects: React.FC = () => {
                         </h2>
                         <div className="w-20 h-1.5 bg-swiss-blue mb-6"></div>
                         <p className="text-base md:text-lg leading-relaxed text-swiss-black/80 mb-6 font-medium">
-                          {project.description}
+                          {renderDescription(project)}
                         </p>
                       </>
                     )}

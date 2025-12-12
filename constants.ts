@@ -90,10 +90,10 @@ export const PROJECTS: Project[] = [
   {
     id: '3',
     title: "Project Saber",
-    description: "Closing the Data Vacuum in African Education. Click 'View Details' to access the pitch deck.",
+    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful..",
     status: "Ongoing",
     image: "/project3.png",
-    hideDetailsLink: false,
+    hideDetailsLink: true, // Hidden as requested, access via hidden 'key' link
     embedUrl: "",
     link: "#/saber",
     linkText: "View Pitch Deck" // Custom text for this project
