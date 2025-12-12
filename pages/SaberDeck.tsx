@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 
 const SaberDeck: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isEmbed, setIsEmbed] = useState(false);
 
   const totalSlides = 11;
 
@@ -23,6 +24,17 @@ const SaberDeck: React.FC = () => {
       if (e.key === 'ArrowLeft') prevSlide();
     };
     window.addEventListener('keydown', handleKeyDown);
+    
+    // Check if we are running inside an iframe (e.g. Notion Embed)
+    try {
+      if (window.self !== window.top) {
+        setIsEmbed(true);
+      }
+    } catch (e) {
+      // If cross-origin restrictions block access to window.top, we are likely in an iframe
+      setIsEmbed(true);
+    }
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
@@ -312,7 +324,7 @@ const SaberDeck: React.FC = () => {
       <div className="max-w-xl bg-white border-2 border-swiss-black p-8 shadow-[12px_12px_0px_0px_rgba(17,17,17,1)]">
          <div className="w-32 h-32 mx-auto bg-swiss-gray/20 rounded-full mb-6 overflow-hidden border-2 border-swiss-black">
             {/* Placeholder for Headshot */}
-            <img src="/OlafareO.jpeg" alt="Olafare Olagbaju" className="w-full h-full object-cover grayscale" />
+            <img src="/Olafare.jpg" alt="Olafare Olagbaju" className="w-full h-full object-cover grayscale" />
          </div>
          <h3 className="text-2xl font-black mb-1">Olafare Olagbaju</h3>
          <p className="text-xs font-bold uppercase tracking-widest text-swiss-blue mb-4">Founder / CEO</p>
@@ -483,10 +495,12 @@ const SaberDeck: React.FC = () => {
           </a>
 
           <div className="flex flex-col items-end">
-             {/* Close Button - Allow pointer events */}
-             <a href="#/projects" className="pointer-events-auto mb-2 text-xs font-bold uppercase tracking-widest hover:text-swiss-red transition-colors flex items-center gap-1">
-               Close <X size={14} />
-             </a>
+             {/* Close Button - Allow pointer events, hide if embedded */}
+             {!isEmbed && (
+               <a href="#/projects" className="pointer-events-auto mb-2 text-xs font-bold uppercase tracking-widest hover:text-swiss-red transition-colors flex items-center gap-1">
+                 Close <X size={14} />
+               </a>
+             )}
              {/* Slide Number */}
              <div className="text-4xl md:text-6xl font-black text-swiss-black/5 font-display leading-none">
                {String(currentSlide + 1).padStart(2, '0')}
