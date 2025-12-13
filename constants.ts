@@ -79,13 +79,13 @@ export const PROJECTS: Project[] = [
   {
     id: '2',
     title: "Academy Lunch and Learn",
-    description: "Next: Dec 20 with Uyeme Itsueli on 'Building a Life Beyond the Script'. A learning series transforming student perspectives on life outside school.",
+    description: "Academy Lunch and Learn (ALL) is a lecture series that connects the classroom to the real world. It is Abigail Academy's experiential learning proof of concept",
     status: "Ongoing",
     image: "/project2.png",
     embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
     hideDetailsLink: false,
     link: "#/lunch-and-learn",
-    linkText: "See Who We Have Coming Up"
+    linkText: "See Who's Next"
   },
   {
     id: '3',
