@@ -8,17 +8,20 @@ const LunchAndLearn: React.FC = () => {
   return (
     <div className="w-full min-h-[100dvh] bg-swiss-bg flex flex-col relative overflow-y-auto">
       <SEO 
-        title={`Academy Lunch and Learn: ${LUNCH_LEARN_CONFIG.speakerName}`} 
+        title={`Lunch and Learn: ${LUNCH_LEARN_CONFIG.speakerName}`} 
         description={`Join us for our next Academy Lunch and Learn with ${LUNCH_LEARN_CONFIG.speakerName}: ${LUNCH_LEARN_CONFIG.title.replace('\n', ' ')} ${LUNCH_LEARN_CONFIG.subtitle}`}
+        image={LUNCH_LEARN_CONFIG.socialImage}
       />
 
       {/* Navigation Header */}
-      <div className="absolute top-0 left-0 w-full p-6 md:p-8 flex justify-between items-start z-30 pointer-events-none">
-        <a href="#/" className="flex items-center gap-2 pointer-events-auto group">
-          <img src={LOGO_SRC} alt="Logo" className="h-10 w-10 group-hover:rotate-180 transition-transform duration-700" />
-          <span className="font-bold text-xs tracking-widest uppercase group-hover:text-swiss-red transition-colors">{BRAND_NAME}</span>
+      <div className="absolute top-0 left-0 w-full p-4 md:p-8 flex justify-between items-start z-30 pointer-events-none">
+        <a href="#/" className="flex items-center gap-3 pointer-events-auto group max-w-[65%] md:max-w-none">
+          <img src={LOGO_SRC} alt="Logo" className="h-10 w-10 shrink-0 group-hover:rotate-180 transition-transform duration-700" />
+          <span className="font-bold text-[10px] md:text-xs tracking-widest uppercase group-hover:text-swiss-red transition-colors leading-tight block">
+            {BRAND_NAME}
+          </span>
         </a>
-        <a href="#/projects" className="pointer-events-auto flex items-center gap-1 text-xs font-bold uppercase tracking-widest hover:text-swiss-red transition-colors bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full border border-swiss-black/10">
+        <a href="#/projects" className="pointer-events-auto flex items-center gap-1 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:text-swiss-red transition-colors bg-white/50 backdrop-blur-sm px-3 py-2 rounded-full border border-swiss-black/10 whitespace-nowrap">
           Close <X size={14} />
         </a>
       </div>
@@ -27,14 +30,14 @@ const LunchAndLearn: React.FC = () => {
       <div className="flex-grow grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         
         {/* Left: Visual & Key Info */}
-        <div className="bg-swiss-red text-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+        <div className="bg-swiss-red text-white px-6 pt-32 pb-12 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
            {/* Decorative Big Type */}
            <div className="absolute top-0 left-0 p-4 text-[20rem] font-black opacity-10 leading-none select-none pointer-events-none text-swiss-black">
-             #333
+             20
            </div>
 
            <div className="relative z-10 space-y-8">
-             <div className="inline-block bg-swiss-black text-white px-4 py-2 text-xs font-bold uppercase tracking-widest mb-4">
+             <div className="inline-block bg-swiss-black text-white px-4 py-2 text-xs font-bold uppercase tracking-widest mb-4 whitespace-nowrap">
                Upcoming Session
              </div>
              
@@ -48,15 +51,15 @@ const LunchAndLearn: React.FC = () => {
 
              <div className="pt-8 space-y-6">
                 <div className="flex items-center gap-4 text-lg font-bold">
-                   <Calendar className="text-swiss-black" />
+                   <Calendar className="text-swiss-black shrink-0" />
                    <span>{LUNCH_LEARN_CONFIG.date}</span>
                 </div>
                 <div className="flex items-center gap-4 text-lg font-bold">
-                   <Clock className="text-swiss-black" />
+                   <Clock className="text-swiss-black shrink-0" />
                    <span>{LUNCH_LEARN_CONFIG.time}</span>
                 </div>
                 <div className="flex items-center gap-4 text-lg font-bold">
-                   <MapPin className="text-swiss-black" />
+                   <MapPin className="text-swiss-black shrink-0" />
                    <span>{LUNCH_LEARN_CONFIG.location}</span>
                 </div>
              </div>
@@ -84,7 +87,7 @@ const LunchAndLearn: React.FC = () => {
                </h2>
                <div className="flex items-end gap-6 mb-6">
                  {/* Placeholder for Speaker Image - using initials */}
-                 <div className="w-24 h-24 bg-swiss-black text-white flex items-center justify-center font-black text-3xl">
+                 <div className="w-24 h-24 bg-swiss-black text-white flex items-center justify-center font-black text-3xl shrink-0">
                    {LUNCH_LEARN_CONFIG.speakerInitials}
                  </div>
                  <div>

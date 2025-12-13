@@ -1,12 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
-import { LOGO_SRC } from '../constants';
+import { LOGO_SRC, OSTUDIO_BG_IMAGE } from '../constants';
 import { X, Lock } from 'lucide-react';
-
-// Placeholder for the attached Golden Image. 
-// You can replace this URL with the actual URL of your uploaded image.
-const BG_IMAGE_URL = "https://www.balmerhahlen.ch/wp-content/uploads/2020/03/19FEVI_Timbre_detail1-2-1536x1024.jpg";
 
 const OStudio: React.FC = () => {
   // Animation States for Intro
@@ -115,7 +111,7 @@ const OStudio: React.FC = () => {
         className={`fixed inset-0 bg-[#111] flex flex-col items-center justify-center z-50 overflow-hidden transition-opacity duration-1000 ease-in-out`}
         style={{ ...fontStyle, opacity: isIntroExiting ? 0 : 1 }}
       >
-        <SEO title="O Studio" description="Olagbajumo Studio: An educational art studio in Lagos." />
+        <SEO title="O Studio" description="Olagbajumo Studio: An educational art studio in Lagos." image={OSTUDIO_BG_IMAGE} />
         
         <div className="relative w-full h-full flex items-center justify-center">
             
@@ -179,12 +175,12 @@ const OStudio: React.FC = () => {
       className="min-h-screen bg-[#111] text-[#Eaeaea] flex flex-col relative overflow-hidden transition-opacity duration-[1500ms] ease-out" 
       style={{ ...fontStyle, opacity: mainOpacity }}
     >
-       <SEO title="O Studio" description="Olagbajumo Studio: Art, Design, and Systems Thinking." />
+       <SEO title="O Studio" description="Olagbajumo Studio: Art, Design, and Systems Thinking." image={OSTUDIO_BG_IMAGE} />
        
        {/* BLURRED BACKGROUND IMAGE */}
        <div className="absolute inset-0 z-0">
           <img 
-            src={BG_IMAGE_URL} 
+            src={OSTUDIO_BG_IMAGE} 
             alt="Background" 
             className="w-full h-full object-cover blur-3xl opacity-60 scale-110" 
           />

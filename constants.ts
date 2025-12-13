@@ -13,6 +13,7 @@ export const LOGO_SRC = `data:image/svg+xml,%3Csvg width='100' height='100' view
 
 // BACKGROUND IMAGE CONFIGURATION
 export const SITE_BACKGROUND_IMAGE = "https://srm360.org/wp-content/uploads/2024/11/cirrus-clouds.jpg";
+export const OSTUDIO_BG_IMAGE = "https://www.balmerhahlen.ch/wp-content/uploads/2020/03/19FEVI_Timbre_detail1-2-1536x1024.jpg";
 
 export const NAV_ITEMS: NavItem[] = [
   // Home removed as requested
@@ -79,13 +80,13 @@ export const PROJECTS: Project[] = [
   {
     id: '2',
     title: "Academy Lunch and Learn",
-    description: "Academy Lunch and Learn (ALL) is a lecture series that connects the classroom to the real world. It is Abigail Academy's experiential learning proof of concept",
+    description: "Academy Lunch and Learn (ALL) is a lecture series that connects the classroom to the real world. It is Abigail Academy's experiential learning proof of concept.",
     status: "Ongoing",
     image: "/project2.png",
     embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
     hideDetailsLink: false,
     link: "#/lunch-and-learn",
-    linkText: "See Who's Next"
+    linkText: "View Event Flyer"
   },
   {
     id: '3',
@@ -151,10 +152,13 @@ export const LUNCH_LEARN_CONFIG = {
   speakerName: "Uyeme Itsueli",
   speakerInitials: "UI",
   speakerRole: "Executive Director, Relate Africa",
-  speakerBioMain: "Uyeme is a Development Professional and Communications Strategist who blends creativity, analytical discipline, and a passion for social development.",
+  speakerBioMain: "Uyeme is a seasoned Development Professional and Communications Strategist who blends creativity, analytical discipline, and a passion for social development.",
   speakerBioSub: "Currently serving as the Executive Director of Relate Africa, a Lagos-based nonprofit, she empowers working women across diverse backgrounds. Under her leadership, the organization trained over 100 female traders in Idumota Market on financial literacy and marketing.",
   
-  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on boldness and creating impact beyond traditional career scripts."
+  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on using storytelling as a tool for social change and creating impact beyond traditional career scripts.",
+  
+  // Using Vimeo Thumbnail as the Social Sharing Image for the event
+  socialImage: "https://vumbnail.com/1129844678.jpg"
 };
 
 // CONTACT INFO
@@ -164,7 +168,7 @@ export const FOOTER_TAGLINE = "Democratizing education by increasing access and 
 export const FOOTER_REGISTRATION = "Registered Under Part F of CAMA 2020 as an Incorporated Trustee by the Corporate Affairs Commission, Federal Republic of Nigeria.";
 
 export const SOCIAL_LINKS = [
-  { platform: "Academy Lunch and Learn", url: "https://www.oeflagos.org/#/lunch-and-learn" },
+  { platform: "Academy Lunch and Learn", url: "https://vimeo.com/olagbajumoeducation" },
   { platform: "Book a Free Consultation", url: "https://calendar.app.google/rxNiCF47KRXC7vG77" },
   { platform: "Abigail Academy LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
 ];
