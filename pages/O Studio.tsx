@@ -182,7 +182,7 @@ const OStudio: React.FC = () => {
           <img 
             src={OSTUDIO_BG_IMAGE} 
             alt="Background" 
-            className="w-full h-full object-cover blur-3xl opacity-60 scale-110" 
+            className="w-full h-full object-cover blur-md opacity-60 scale-110" 
           />
           {/* Dark overlay to ensure text readability */}
           <div className="absolute inset-0 bg-black/60 mix-blend-multiply"></div>

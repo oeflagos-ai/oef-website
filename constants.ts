@@ -84,7 +84,7 @@ export const PROJECTS: Project[] = [
     status: "Ongoing",
     image: "/project2.png",
     embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
-    hideDetailsLink: false,
+    hideDetailsLink: true,
     link: "#/lunch-and-learn",
     linkText: "View Event Flyer"
   },

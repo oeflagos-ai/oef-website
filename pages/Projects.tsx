@@ -8,8 +8,8 @@ import SEO from '../components/SEO';
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
   const [projects, setProjects] = useState<Project[]>(() => {
-    // UPDATED KEY: 'oef_projects_v6' to ensure new description with 'key' is loaded
-    const saved = localStorage.getItem('oef_projects_v6');
+    // UPDATED KEY: 'oef_projects_v7' to ensure new description/links from constants are loaded
+    const saved = localStorage.getItem('oef_projects_v7');
     return saved ? JSON.parse(saved) : PROJECTS;
   });
 
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
 
   // Persist to localStorage whenever projects change
   useEffect(() => {
-    localStorage.setItem('oef_projects_v6', JSON.stringify(projects));
+    localStorage.setItem('oef_projects_v7', JSON.stringify(projects));
   }, [projects]);
 
   const startEditing = (project: Project) => {
