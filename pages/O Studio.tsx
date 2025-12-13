@@ -6,20 +6,18 @@ import { X, Lock } from 'lucide-react';
 
 // Placeholder for the attached Golden Image. 
 // You can replace this URL with the actual URL of your uploaded image.
-const BG_IMAGE_URL = "https://images.unsplash.com/photo-1621257745749-01c0dd59a3a9?q=80&w=2574&auto=format&fit=crop";
+const BG_IMAGE_URL = "https://www.balmerhahlen.ch/wp-content/uploads/2020/03/19FEVI_Timbre_detail1-2-1536x1024.jpg";
 
 const OStudio: React.FC = () => {
   // Animation States for Intro
-  // Updated sequence: 
-  // 1. logo
-  // 2. text-show: "OLAGBAJUMO STUDIO"
-  // 3. text-collapse: "O STUDIO" (collapses middle)
-  // 4. text-grow: "O STUDIO" scales up
-  // 5. button: Enter button appears
+  // Sequence: logo -> text-show -> text-collapse -> text-grow -> button -> entered
   const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-show' | 'text-collapse' | 'text-grow' | 'button' | 'entered'>('init');
   
   // Intro Exit Transition State
   const [isIntroExiting, setIsIntroExiting] = useState(false);
+  
+  // Main Page Opacity State for smooth entry
+  const [mainOpacity, setMainOpacity] = useState(0);
 
   // Tab State
   const [activeTab, setActiveTab] = useState<'about' | 'shop'>('about');
@@ -40,10 +38,10 @@ const OStudio: React.FC = () => {
     // 2. Logo fades out, Full Name (OLAGBAJUMO STUDIO) fades IN
     const t2 = setTimeout(() => setAnimStage('text-show'), 2500);
 
-    // 3. Middle text collapses
+    // 3. Middle text collapses (LAGBAJUMO disappears)
     const t3 = setTimeout(() => setAnimStage('text-collapse'), 4500);
 
-    // 4. Remaining text grows
+    // 4. Remaining text grows (O STUDIO scales up)
     const t4 = setTimeout(() => setAnimStage('text-grow'), 5500);
 
     // 5. Button appears
@@ -53,6 +51,19 @@ const OStudio: React.FC = () => {
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5);
     };
   }, []);
+
+  // =========================================
+  // MAIN PAGE ENTRY EFFECT
+  // =========================================
+  useEffect(() => {
+    if (animStage === 'entered') {
+      // Small delay to ensure DOM is ready, then fade in slowly
+      const t = setTimeout(() => {
+        setMainOpacity(1);
+      }, 100);
+      return () => clearTimeout(t);
+    }
+  }, [animStage]);
 
   // =========================================
   // SHOP LOOP ANIMATION
@@ -73,10 +84,10 @@ const OStudio: React.FC = () => {
     // 1. Fade out the intro screen
     setIsIntroExiting(true);
     
-    // 2. Wait for fade out, then switch state
+    // 2. Wait for fade out (1s), then switch state to render main content
     setTimeout(() => {
       setAnimStage('entered');
-    }, 800);
+    }, 1000);
   };
 
   const handleTabSwitch = (tab: 'about' | 'shop') => {
@@ -101,7 +112,7 @@ const OStudio: React.FC = () => {
   if (animStage !== 'entered') {
     return (
       <div 
-        className={`fixed inset-0 bg-[#111] flex flex-col items-center justify-center z-50 overflow-hidden transition-opacity duration-1000`}
+        className={`fixed inset-0 bg-[#111] flex flex-col items-center justify-center z-50 overflow-hidden transition-opacity duration-1000 ease-in-out`}
         style={{ ...fontStyle, opacity: isIntroExiting ? 0 : 1 }}
       >
         <SEO title="O Studio" description="Olagbajumo Studio: An educational art studio in Lagos." />
@@ -120,7 +131,7 @@ const OStudio: React.FC = () => {
               (animStage === 'init' || animStage === 'logo') ? 'opacity-0' : 'opacity-100'
             }`}>
                <h1 
-                  className={`flex items-center justify-center font-bold text-white whitespace-nowrap transition-transform duration-1000 ease-in-out ${
+                  className={`flex items-center justify-center font-bold text-white whitespace-nowrap transition-transform duration-1000 ease-in-out origin-center ${
                     (animStage === 'text-grow' || animStage === 'button') ? 'scale-[2.5] md:scale-[3.5]' : 'scale-100'
                   }`}
                >
@@ -128,6 +139,7 @@ const OStudio: React.FC = () => {
                   <span className="text-2xl md:text-4xl lg:text-5xl">O</span>
                   
                   {/* Part 2: LAGBAJUMO (Collapses) */}
+                  {/* We treat 'LAGBAJUMO' as the collapsible part. */}
                   <span 
                     className={`overflow-hidden transition-all duration-1000 ease-in-out flex justify-center text-2xl md:text-4xl lg:text-5xl ${
                       (animStage === 'text-collapse' || animStage === 'text-grow' || animStage === 'button') 
@@ -138,7 +150,7 @@ const OStudio: React.FC = () => {
                     LAGBAJUMO
                   </span>
 
-                  {/* Part 3: STUDIO */}
+                  {/* Part 3: STUDIO (Note: Includes non-breaking space if needed, or margin) */}
                   <span className="text-2xl md:text-4xl lg:text-5xl">&nbsp;STUDIO</span>
                </h1>
             </div>
@@ -163,7 +175,10 @@ const OStudio: React.FC = () => {
   // RENDER: MAIN PAGE
   // =========================================
   return (
-    <div className="min-h-screen bg-[#111] text-[#Eaeaea] flex flex-col animate-fade-in relative overflow-hidden" style={fontStyle}>
+    <div 
+      className="min-h-screen bg-[#111] text-[#Eaeaea] flex flex-col relative overflow-hidden transition-opacity duration-[1500ms] ease-out" 
+      style={{ ...fontStyle, opacity: mainOpacity }}
+    >
        <SEO title="O Studio" description="Olagbajumo Studio: Art, Design, and Systems Thinking." />
        
        {/* BLURRED BACKGROUND IMAGE */}
@@ -177,17 +192,19 @@ const OStudio: React.FC = () => {
           <div className="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
        </div>
 
-       {/* HEADER: White Background, Black Text, Regular Weight (Not Bold) */}
+       {/* HEADER */}
        <header className="fixed top-0 left-0 w-full z-40 border-b border-[#333] bg-white/95 backdrop-blur-sm">
          <div className="flex justify-between items-center h-20 px-4 md:px-8">
             <div className="flex items-center gap-4">
                {/* Header Logo: Filled circle within a bigger circle */}
                <div className="w-10 h-10 flex items-center justify-center relative">
+                  {/* Outer Circle (Stroke) */}
                   <div className="absolute inset-0 border-[3px] border-black rounded-full"></div>
+                  {/* Inner Circle (Filled) */}
                   <div className="w-4 h-4 bg-black rounded-full"></div>
                </div>
                
-               {/* Text: Normal weight, normal spacing */}
+               {/* Text: Normal spacing */}
                <span className="text-lg text-black">O STUDIO</span>
             </div>
             

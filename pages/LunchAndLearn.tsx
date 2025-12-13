@@ -30,7 +30,7 @@ const LunchAndLearn: React.FC = () => {
         <div className="bg-swiss-red text-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
            {/* Decorative Big Type */}
            <div className="absolute top-0 left-0 p-4 text-[20rem] font-black opacity-10 leading-none select-none pointer-events-none text-swiss-black">
-             20
+             #333
            </div>
 
            <div className="relative z-10 space-y-8">
