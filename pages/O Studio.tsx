@@ -1,170 +1,183 @@
 
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
-import { BRAND_NAME, CONTACT_EMAIL } from '../constants';
+import { LOGO_SRC } from '../constants';
 import { X, Lock } from 'lucide-react';
 import { Product, CartItem } from '../types';
 
 const OStudio: React.FC = () => {
-  // Animation States
-  const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-expand' | 'text-shrink' | 'button' | 'entered'>('init');
+  // Animation States for Intro
+  const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-show' | 'text-marquee' | 'final-brand' | 'button' | 'entered'>('init');
+  
+  // Intro Exit Transition State
+  const [isIntroExiting, setIsIntroExiting] = useState(false);
+
+  // Tab State
   const [activeTab, setActiveTab] = useState<'about' | 'shop'>('about');
   
   // Content Transition State (for fading between tabs)
   const [isContentVisible, setIsContentVisible] = useState(true);
   
-  // Shop Specific Animation State
-  const [shopStage, setShopStage] = useState<'brand' | 'transition' | 'message'>('brand');
+  // Shop Loop State
+  const [showShopBrand, setShowShopBrand] = useState(true);
 
-  // Trigger Entrance Animation Sequence on Mount
+  // =========================================
+  // INTRO ANIMATION SEQUENCE
+  // =========================================
   useEffect(() => {
-    // Stage 1: Logo fades in
-    setTimeout(() => setAnimStage('logo'), 500);
+    // 1. Logo fades in (Pulse effect matching Saber Deck)
+    const t1 = setTimeout(() => setAnimStage('logo'), 500);
     
-    // Stage 2: Logo morphs to Text "OLAGBAJUMO STUDIO"
-    setTimeout(() => setAnimStage('text-expand'), 2500);
+    // 2. Logo fades out, Full Name appears
+    const t2 = setTimeout(() => setAnimStage('text-show'), 3000);
 
-    // Stage 3: Text shrinks to "O STUDIO"
-    setTimeout(() => setAnimStage('text-shrink'), 5500);
+    // 3. Full Name slides out (Marquee)
+    const t3 = setTimeout(() => setAnimStage('text-marquee'), 5000);
 
-    // Stage 4: Button Appears
-    setTimeout(() => setAnimStage('button'), 7500);
+    // 4. Short Name (O STUDIO) appears
+    const t4 = setTimeout(() => setAnimStage('final-brand'), 6000);
+
+    // 5. Button appears
+    const t5 = setTimeout(() => setAnimStage('button'), 7000);
+
+    return () => {
+      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5);
+    };
   }, []);
 
+  // =========================================
+  // SHOP LOOP ANIMATION
+  // =========================================
+  useEffect(() => {
+    if (activeTab === 'shop') {
+      const interval = setInterval(() => {
+        setShowShopBrand(prev => !prev);
+      }, 3000); // Toggle every 3 seconds
+      return () => clearInterval(interval);
+    }
+  }, [activeTab]);
+
+  // =========================================
+  // HANDLERS
+  // =========================================
   const handleEnter = () => {
-    setAnimStage('entered');
+    // 1. Fade out the intro screen
+    setIsIntroExiting(true);
+    
+    // 2. Wait for fade out, then switch state
+    setTimeout(() => {
+      setAnimStage('entered');
+      // 3. Main content is rendered with opacity-0 initially, so we fade it in
+      // The main render logic handles the fade-in of the content wrapper
+    }, 800);
   };
 
   const handleTabSwitch = (tab: 'about' | 'shop') => {
     if (tab === activeTab) return;
-    
-    // 1. Fade out current content
     setIsContentVisible(false);
-
-    // 2. Wait for fade out, then switch tab and reset shop animation if needed
     setTimeout(() => {
       setActiveTab(tab);
-      
-      if (tab === 'shop') {
-        // Reset Shop Animation Sequence
-        setShopStage('brand');
-        setTimeout(() => setShopStage('transition'), 2000); // Start fade out of brand
-        setTimeout(() => setShopStage('message'), 3000);    // Start fade in of message
-      }
-
-      // 3. Fade in new content
+      if (tab === 'shop') setShowShopBrand(true); // Reset to start of loop
       setTimeout(() => setIsContentVisible(true), 50);
-    }, 400); // Duration of the css transition
+    }, 400);
   };
 
   // =========================================
-  // SHOP BACKEND LOGIC (Preserved)
+  // RENDER: INTRO
   // =========================================
-  const [cart, setCart] = useState<CartItem[]>([]);
-  
-  const addToCart = (product: Product) => {
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  };
-
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
-
-  // =========================================
-  // RENDER
-  // =========================================
-
-  // PRE-ENTRANCE VIEW
   if (animStage !== 'entered') {
     return (
-      <div className="fixed inset-0 bg-[#111] flex flex-col items-center justify-center z-50 overflow-hidden font-sans">
+      <div 
+        className={`fixed inset-0 bg-[#111] flex flex-col items-center justify-center z-50 overflow-hidden transition-opacity duration-1000`}
+        style={{ fontFamily: 'Helvetica, sans-serif', opacity: isIntroExiting ? 0 : 1 }}
+      >
         <SEO title="O Studio" description="Olagbajumo Studio: An educational art studio in Lagos." />
         
-        <div className="relative w-full max-w-7xl flex flex-col items-center justify-center h-screen px-4">
+        <div className="relative w-full h-full">
             
-            {/* STAGE 1: LOGO */}
-            <div className={`transition-all duration-1000 absolute ${
-               animStage === 'text-expand' || animStage === 'text-shrink' || animStage === 'button' 
-               ? 'opacity-0 scale-50' 
-               : (animStage === 'logo' ? 'opacity-100 scale-100' : 'opacity-0 scale-90')
+            {/* STAGE 1: LOGO (Pulsing, centered) */}
+            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
+               animStage === 'logo' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
             }`}>
-               <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="40" stroke="white" strokeWidth="8" className="animate-[spin_10s_linear_infinite]" />
-                  <circle cx="50" cy="50" r="20" fill="white" className="animate-pulse" />
-               </svg>
+               {/* Invert filter used because logo is black, background is black */}
+               <img src={LOGO_SRC} alt="O Studio Logo" className="w-32 h-32 md:w-48 md:h-48 animate-pulse invert" />
             </div>
 
-            {/* STAGE 2: EXPANDED TEXT */}
-            <h1 className={`text-3xl md:text-5xl lg:text-7xl font-bold text-white tracking-[0.2em] md:tracking-[0.5em] text-center absolute transition-all duration-[2000ms] ease-in-out ${
-              animStage === 'text-expand' 
-                ? 'opacity-100 tracking-[0.2em] md:tracking-[0.5em] blur-0' 
-                : (animStage === 'logo' || animStage === 'init' ? 'opacity-0 blur-xl' : 'opacity-0 tracking-[0em]')
+            {/* STAGE 2 & 3: FULL NAME MARQUEE */}
+            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
+              (animStage === 'text-show' || animStage === 'text-marquee') ? 'opacity-100' : 'opacity-0'
             }`}>
-              OLAGBAJUMO STUDIO
-            </h1>
+               <h1 
+                  className={`text-4xl md:text-6xl font-bold text-white tracking-widest whitespace-nowrap transition-transform duration-[1500ms] ease-in-out ${
+                    animStage === 'text-marquee' ? '-translate-x-[150vw]' : 'translate-x-0'
+                  }`}
+                >
+                  OLAGBAJUMO STUDIO
+               </h1>
+            </div>
 
-            {/* STAGE 3 & 4: SHRUNK TEXT */}
-            {/* Made bigger as requested */}
-            <h1 className={`text-5xl md:text-7xl lg:text-9xl font-black text-white tracking-tighter absolute transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
-              animStage === 'text-shrink' || animStage === 'button'
-                ? 'opacity-100 scale-100' 
-                : 'opacity-0 scale-150'
+            {/* STAGE 4: O STUDIO (Centered) */}
+            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
+               (animStage === 'final-brand' || animStage === 'button') ? 'opacity-100' : 'opacity-0'
             }`}>
-              O STUDIO
-            </h1>
+               <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter">
+                  O STUDIO
+               </h1>
+            </div>
 
-            {/* STAGE 4: GLOWING BUTTON */}
-            {/* Increased spacing (mt) and updated color to Golden Yellow #FFD700 */}
-            <button 
-              onClick={handleEnter}
-              className={`mt-48 md:mt-64 px-12 py-4 border-2 border-[#FFD700] text-[#FFD700] font-bold text-xl uppercase tracking-widest hover:bg-[#FFD700] hover:text-black transition-all duration-500 z-20 animate-[pulse_3s_ease-in-out_infinite] shadow-[0_0_20px_#FFD700] hover:shadow-[0_0_50px_#FFD700] ${
-                animStage === 'button' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-              }`}
-            >
-              Enter
-            </button>
+            {/* STAGE 5: ENTER BUTTON */}
+            {/* Positioned 28% from bottom */}
+            <div className={`absolute w-full flex justify-center bottom-[28%] transition-all duration-1000 ${
+               animStage === 'button' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+                <button 
+                  onClick={handleEnter}
+                  className="px-12 py-4 border-2 border-[#FFD700] text-[#FFD700] font-bold text-xl uppercase tracking-widest hover:bg-[#FFD700] hover:text-black transition-all duration-500 animate-[pulse_3s_ease-in-out_infinite] shadow-[0_0_20px_#FFD700] hover:shadow-[0_0_50px_#FFD700]"
+                >
+                  Enter
+                </button>
+            </div>
         </div>
       </div>
     );
   }
 
-  // ENTERED VIEW (Main Page)
+  // =========================================
+  // RENDER: MAIN PAGE
+  // =========================================
   return (
-    <div className="min-h-screen bg-[#111] text-[#Eaeaea] font-sans selection:bg-[#FFD700] selection:text-black flex flex-col">
+    <div className="min-h-screen bg-[#111] text-[#Eaeaea] flex flex-col animate-fade-in" style={{ fontFamily: 'Helvetica, sans-serif' }}>
        <SEO title="O Studio" description="Olagbajumo Studio: Art, Design, and Systems Thinking." />
        
-       {/* HEADER */}
-       <header className="fixed top-0 left-0 w-full z-40 border-b border-[#333] bg-[#111]/90 backdrop-blur-md">
+       {/* HEADER: White Background, Black Text, Bold */}
+       <header className="fixed top-0 left-0 w-full z-40 border-b border-[#333] bg-white">
          <div className="flex justify-between items-center h-20 px-4 md:px-8">
             <div className="flex items-center gap-4">
-               <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center">
-                 <div className="w-3 h-3 bg-white rounded-full"></div>
-               </div>
-               <span className="font-bold tracking-widest text-lg">O STUDIO</span>
+               {/* Logo: Already black stroke, fits perfectly on white */}
+               <img src={LOGO_SRC} alt="O Studio Logo" className="w-10 h-10 md:w-12 md:h-12" />
+               <span className="font-bold tracking-widest text-lg text-black">O STUDIO</span>
             </div>
             
-            <a href="#/" className="p-2 hover:text-[#FFD700] transition-colors border border-transparent hover:border-[#FFD700]">
+            <a href="#/" className="p-2 text-black hover:text-[#FFD700] transition-colors">
                <X />
             </a>
          </div>
          
          {/* Navigation Tabs */}
-         <div className="flex border-t border-[#333]">
+         <div className="flex border-t border-[#ccc]">
             <button 
               onClick={() => handleTabSwitch('about')}
-              className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold border-r border-[#333] hover:bg-[#222] transition-colors relative ${activeTab === 'about' ? 'bg-white text-black' : 'text-[#888]'}`}
+              className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold border-r border-[#ccc] transition-colors relative text-black ${
+                activeTab === 'about' ? 'bg-[#E5E4E2]' : 'bg-white hover:bg-[#E5E4E2]' // Platinum hover
+              }`}
             >
               About
             </button>
             <button 
               onClick={() => handleTabSwitch('shop')}
-              className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold hover:bg-[#222] transition-colors relative ${activeTab === 'shop' ? 'bg-[#FFD700] text-black' : 'text-[#888]'}`}
+              className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold transition-colors relative text-black ${
+                activeTab === 'shop' ? 'bg-[#FFD700]' : 'bg-white hover:bg-[#E5E4E2]' // Platinum hover
+              }`}
             >
               Shop
             </button>
@@ -172,7 +185,6 @@ const OStudio: React.FC = () => {
        </header>
 
        {/* CONTENT AREA */}
-       {/* Centered Vertically */}
        <main className="flex-grow pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto w-full flex flex-col justify-center min-h-screen">
          
          <div className={`transition-opacity duration-500 ease-in-out ${isContentVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -208,8 +220,6 @@ const OStudio: React.FC = () => {
                             Emerging Artist Advisory
                          </li>
                        </ul>
-                       
-                       {/* Established section removed as requested */}
                     </div>
 
                     {/* Right Column: Narrative */}
@@ -230,7 +240,7 @@ const OStudio: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Decorative "Archive" Footer */}
+                {/* Decorative Footer */}
                 <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#333] pt-4 text-[10px] uppercase tracking-widest text-[#444]">
                    <div>Archival Ref: 001-A</div>
                    <div>Status: Operational</div>
@@ -244,22 +254,22 @@ const OStudio: React.FC = () => {
            {activeTab === 'shop' && (
              <div className="min-h-[50vh] flex flex-col items-center justify-center relative w-full">
                 
-                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                <div className="relative z-10 w-full h-full flex items-center justify-center h-[300px]">
                    
-                   {/* 1. O STUDIO: Fades OUT */}
-                   <h3 className={`text-4xl md:text-6xl font-black text-white absolute transition-opacity duration-1000 ${shopStage === 'brand' ? 'opacity-100' : 'opacity-0'}`}>
+                   {/* 1. O STUDIO: Fades In/Out */}
+                   <h3 className={`text-4xl md:text-6xl font-black text-white absolute transition-opacity duration-1000 ${showShopBrand ? 'opacity-100' : 'opacity-0'}`}>
                      O STUDIO
                    </h3>
 
-                   {/* 2. COMING SOON: Fades IN */}
-                   <h2 className={`text-5xl md:text-8xl lg:text-9xl font-black text-[#FFD700] text-center transition-opacity duration-1000 absolute leading-none ${shopStage === 'message' ? 'opacity-100' : 'opacity-0'}`}>
+                   {/* 2. COMING SOON: Fades In/Out */}
+                   <h2 className={`text-5xl md:text-8xl lg:text-9xl font-black text-[#FFD700] text-center absolute leading-none transition-opacity duration-1000 ${!showShopBrand ? 'opacity-100' : 'opacity-0'}`}>
                      COMING SOON
                    </h2>
                    
                 </div>
                 
-                {/* Footer Message (Always visible after transition or fade in with it) */}
-                <div className={`mt-32 p-4 border border-[#333] text-[#666] text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-1000 delay-500 ${shopStage === 'message' ? 'opacity-100' : 'opacity-0'}`}>
+                {/* Footer Message */}
+                <div className={`mt-12 p-4 border border-[#333] text-[#666] text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-1000 ${!showShopBrand ? 'opacity-100' : 'opacity-50'}`}>
                    <Lock size={12} className="text-[#FFD700]" /> Secure Payments via Paystack.
                 </div>
              </div>
