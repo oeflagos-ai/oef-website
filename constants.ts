@@ -85,7 +85,7 @@ export const PROJECTS: Project[] = [
     embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
     hideDetailsLink: false,
     link: "#/lunch-and-learn",
-    linkText: "View Event Flyer"
+    linkText: "See Who We Have Coming Up"
   },
   {
     id: '3',
@@ -151,10 +151,10 @@ export const LUNCH_LEARN_CONFIG = {
   speakerName: "Uyeme Itsueli",
   speakerInitials: "UI",
   speakerRole: "Executive Director, Relate Africa",
-  speakerBioMain: "Uyeme is a seasoned Development Professional and Communications Strategist who blends creativity, analytical discipline, and a passion for social development.",
+  speakerBioMain: "Uyeme is a Development Professional and Communications Strategist who blends creativity, analytical discipline, and a passion for social development.",
   speakerBioSub: "Currently serving as the Executive Director of Relate Africa, a Lagos-based nonprofit, she empowers working women across diverse backgrounds. Under her leadership, the organization trained over 100 female traders in Idumota Market on financial literacy and marketing.",
   
-  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on using storytelling as a tool for social change and creating impact beyond traditional career scripts."
+  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on boldness and creating impact beyond traditional career scripts."
 };
 
 // CONTACT INFO
@@ -164,7 +164,7 @@ export const FOOTER_TAGLINE = "Democratizing education by increasing access and 
 export const FOOTER_REGISTRATION = "Registered Under Part F of CAMA 2020 as an Incorporated Trustee by the Corporate Affairs Commission, Federal Republic of Nigeria.";
 
 export const SOCIAL_LINKS = [
-  { platform: "Academy Lunch and Learn", url: "https://vimeo.com/olagbajumoeducation" },
+  { platform: "Academy Lunch and Learn", url: "https://www.oeflagos.org/#/lunch-and-learn" },
   { platform: "Book a Free Consultation", url: "https://calendar.app.google/rxNiCF47KRXC7vG77" },
   { platform: "Abigail Academy LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
 ];

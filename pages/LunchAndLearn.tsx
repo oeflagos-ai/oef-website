@@ -8,7 +8,7 @@ const LunchAndLearn: React.FC = () => {
   return (
     <div className="w-full min-h-[100dvh] bg-swiss-bg flex flex-col relative overflow-y-auto">
       <SEO 
-        title={`Lunch and Learn: ${LUNCH_LEARN_CONFIG.speakerName}`} 
+        title={`Academy Lunch and Learn: ${LUNCH_LEARN_CONFIG.speakerName}`} 
         description={`Join us for our next Academy Lunch and Learn with ${LUNCH_LEARN_CONFIG.speakerName}: ${LUNCH_LEARN_CONFIG.title.replace('\n', ' ')} ${LUNCH_LEARN_CONFIG.subtitle}`}
       />
 

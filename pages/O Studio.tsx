@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 import { LOGO_SRC } from '../constants';
 import { X, Lock } from 'lucide-react';
-import { Product, CartItem } from '../types';
 
 // Placeholder for the attached Golden Image. 
 // You can replace this URL with the actual URL of your uploaded image.
@@ -11,8 +10,13 @@ const BG_IMAGE_URL = "https://images.unsplash.com/photo-1621257745749-01c0dd59a3
 
 const OStudio: React.FC = () => {
   // Animation States for Intro
-  // Updated sequence: logo -> text-show (OLAGBAJUMO) -> text-hide -> final-brand (O STUDIO) -> button
-  const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-show' | 'text-hide' | 'final-brand' | 'button' | 'entered'>('init');
+  // Updated sequence: 
+  // 1. logo
+  // 2. text-show: "OLAGBAJUMO STUDIO"
+  // 3. text-collapse: "O STUDIO" (collapses middle)
+  // 4. text-grow: "O STUDIO" scales up
+  // 5. button: Enter button appears
+  const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-show' | 'text-collapse' | 'text-grow' | 'button' | 'entered'>('init');
   
   // Intro Exit Transition State
   const [isIntroExiting, setIsIntroExiting] = useState(false);
@@ -36,14 +40,14 @@ const OStudio: React.FC = () => {
     // 2. Logo fades out, Full Name (OLAGBAJUMO STUDIO) fades IN
     const t2 = setTimeout(() => setAnimStage('text-show'), 2500);
 
-    // 3. Full Name fades OUT
-    const t3 = setTimeout(() => setAnimStage('text-hide'), 5500);
+    // 3. Middle text collapses
+    const t3 = setTimeout(() => setAnimStage('text-collapse'), 4500);
 
-    // 4. Short Name (O STUDIO) fades IN
-    const t4 = setTimeout(() => setAnimStage('final-brand'), 6500);
+    // 4. Remaining text grows
+    const t4 = setTimeout(() => setAnimStage('text-grow'), 5500);
 
     // 5. Button appears
-    const t5 = setTimeout(() => setAnimStage('button'), 7500);
+    const t5 = setTimeout(() => setAnimStage('button'), 6500);
 
     return () => {
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5);
@@ -91,9 +95,6 @@ const OStudio: React.FC = () => {
     fontStretch: 'expanded'
   };
 
-  // Common tracking style for "half a space" (0.5em)
-  const wideTracking = "tracking-[0.5em]";
-
   // =========================================
   // RENDER: INTRO
   // =========================================
@@ -105,32 +106,40 @@ const OStudio: React.FC = () => {
       >
         <SEO title="O Studio" description="Olagbajumo Studio: An educational art studio in Lagos." />
         
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full flex items-center justify-center">
             
-            {/* STAGE 1: LOGO (Filled White Circle) */}
-            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
+            {/* STAGE 1: LOGO (Filled White Circle) - Only visible in 'logo' stage */}
+            <div className={`absolute transition-all duration-1000 ${
                animStage === 'logo' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
             }`}>
                <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full animate-pulse shadow-[0_0_40px_rgba(255,255,255,0.3)]"></div>
             </div>
 
-            {/* STAGE 2: FULL NAME (Fades In/Out) - No Marquee */}
-            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
-              animStage === 'text-show' ? 'opacity-100' : 'opacity-0'
+            {/* STAGE 2-5: TEXT ANIMATION (Collapse & Grow) */}
+            <div className={`absolute flex items-center justify-center transition-opacity duration-1000 ${
+              (animStage === 'init' || animStage === 'logo') ? 'opacity-0' : 'opacity-100'
             }`}>
                <h1 
-                  className={`text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center px-4 ${wideTracking}`}
-                >
-                  OLAGBAJUMO STUDIO
-               </h1>
-            </div>
+                  className={`flex items-center justify-center font-bold text-white whitespace-nowrap transition-transform duration-1000 ease-in-out ${
+                    (animStage === 'text-grow' || animStage === 'button') ? 'scale-[2.5] md:scale-[3.5]' : 'scale-100'
+                  }`}
+               >
+                  {/* Part 1: O */}
+                  <span className="text-2xl md:text-4xl lg:text-5xl">O</span>
+                  
+                  {/* Part 2: LAGBAJUMO (Collapses) */}
+                  <span 
+                    className={`overflow-hidden transition-all duration-1000 ease-in-out flex justify-center text-2xl md:text-4xl lg:text-5xl ${
+                      (animStage === 'text-collapse' || animStage === 'text-grow' || animStage === 'button') 
+                      ? 'max-w-0 opacity-0' 
+                      : 'max-w-[400px] opacity-100'
+                    }`}
+                  >
+                    LAGBAJUMO
+                  </span>
 
-            {/* STAGE 4: O STUDIO (Centered) */}
-            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
-               (animStage === 'final-brand' || animStage === 'button') ? 'opacity-100' : 'opacity-0'
-            }`}>
-               <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black text-white ${wideTracking}`}>
-                  O STUDIO
+                  {/* Part 3: STUDIO */}
+                  <span className="text-2xl md:text-4xl lg:text-5xl">&nbsp;STUDIO</span>
                </h1>
             </div>
 
@@ -140,7 +149,7 @@ const OStudio: React.FC = () => {
             }`}>
                 <button 
                   onClick={handleEnter}
-                  className={`px-12 py-4 border-2 border-[#FFD700] text-[#FFD700] font-bold text-xl uppercase hover:bg-[#FFD700] hover:text-black transition-all duration-500 animate-[pulse_3s_ease-in-out_infinite] shadow-[0_0_20px_#FFD700] hover:shadow-[0_0_50px_#FFD700] ${wideTracking}`}
+                  className="px-12 py-4 border-2 border-[#FFD700] text-[#FFD700] font-bold text-xl uppercase hover:bg-[#FFD700] hover:text-black transition-all duration-500 animate-[pulse_3s_ease-in-out_infinite] shadow-[0_0_20px_#FFD700] hover:shadow-[0_0_50px_#FFD700]"
                 >
                   Enter
                 </button>
@@ -171,11 +180,15 @@ const OStudio: React.FC = () => {
        {/* HEADER: White Background, Black Text, Regular Weight (Not Bold) */}
        <header className="fixed top-0 left-0 w-full z-40 border-b border-[#333] bg-white/95 backdrop-blur-sm">
          <div className="flex justify-between items-center h-20 px-4 md:px-8">
-            <div className="flex items-center gap-6">
-               {/* Header Logo: Filled circle, smaller */}
-               <div className="w-8 h-8 md:w-10 md:h-10 bg-black rounded-full shadow-sm"></div>
-               {/* Text: Normal weight, extra tracking */}
-               <span className={`text-lg text-black ${wideTracking}`}>O STUDIO</span>
+            <div className="flex items-center gap-4">
+               {/* Header Logo: Filled circle within a bigger circle */}
+               <div className="w-10 h-10 flex items-center justify-center relative">
+                  <div className="absolute inset-0 border-[3px] border-black rounded-full"></div>
+                  <div className="w-4 h-4 bg-black rounded-full"></div>
+               </div>
+               
+               {/* Text: Normal weight, normal spacing */}
+               <span className="text-lg text-black">O STUDIO</span>
             </div>
             
             <a href="#/" className="p-2 text-black hover:text-[#FFD700] transition-colors">
@@ -187,7 +200,7 @@ const OStudio: React.FC = () => {
          <div className="flex border-t border-[#ccc]">
             <button 
               onClick={() => handleTabSwitch('about')}
-              className={`flex-1 py-4 text-center uppercase text-sm border-r border-[#ccc] transition-colors relative text-black ${wideTracking} ${
+              className={`flex-1 py-4 text-center uppercase text-sm border-r border-[#ccc] transition-colors relative text-black ${
                 activeTab === 'about' ? 'bg-[#FFD700]' : 'bg-white hover:bg-[#E5E4E2]'
               }`}
             >
@@ -195,7 +208,7 @@ const OStudio: React.FC = () => {
             </button>
             <button 
               onClick={() => handleTabSwitch('shop')}
-              className={`flex-1 py-4 text-center uppercase text-sm transition-colors relative text-black ${wideTracking} ${
+              className={`flex-1 py-4 text-center uppercase text-sm transition-colors relative text-black ${
                 activeTab === 'shop' ? 'bg-[#FFD700]' : 'bg-white hover:bg-[#E5E4E2]'
               }`}
             >
@@ -207,7 +220,7 @@ const OStudio: React.FC = () => {
        {/* CONTENT AREA */}
        <main className="flex-grow pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto w-full flex flex-col justify-center min-h-screen relative z-10">
          
-         <div className={`transition-opacity duration-500 ease-in-out ${isContentVisible ? 'opacity-100' : 'opacity-0'}`}>
+         <div className={`transition-opacity duration-1000 ease-in-out ${isContentVisible ? 'opacity-100' : 'opacity-0'}`}>
            
            {/* ABOUT TAB */}
            {activeTab === 'about' && (
@@ -221,8 +234,8 @@ const OStudio: React.FC = () => {
                     
                     {/* Left Column: Core Focus */}
                     <div className="md:col-span-5 border-r border-[#333] pr-8 hidden md:block h-full">
-                       <p className={`text-xs uppercase text-[#666] mb-8 ${wideTracking}`}>Core Focus</p>
-                       <ul className={`space-y-6 text-2xl font-black text-white ${wideTracking}`}>
+                       <p className="text-xs uppercase text-[#666] mb-8">Core Focus</p>
+                       <ul className="space-y-6 text-2xl font-black text-white">
                          <li className="flex items-center gap-4">
                             <div className="w-2 h-2 bg-[#FFD700] shadow-[0_0_10px_#FFD700]"></div> 
                             Images
@@ -261,7 +274,7 @@ const OStudio: React.FC = () => {
                 </div>
 
                 {/* Decorative Footer */}
-                <div className={`grid grid-cols-2 md:grid-cols-4 border-t border-[#333] pt-4 text-[10px] uppercase text-[#666] ${wideTracking}`}>
+                <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#333] pt-4 text-[10px] uppercase text-[#666]">
                    <div>Archival Ref: 001-A</div>
                    <div>Status: Operational</div>
                    <div>Mode: Transdisciplinary</div>
@@ -277,19 +290,19 @@ const OStudio: React.FC = () => {
                 <div className="relative z-10 w-full h-full flex items-center justify-center h-[300px]">
                    
                    {/* 1. O STUDIO: Fades In/Out */}
-                   <h3 className={`text-4xl md:text-6xl font-black text-white absolute transition-opacity duration-1000 ${wideTracking} ${showShopBrand ? 'opacity-100' : 'opacity-0'}`}>
+                   <h3 className={`text-4xl md:text-6xl font-black text-white absolute transition-opacity duration-1000 ${showShopBrand ? 'opacity-100' : 'opacity-0'}`}>
                      O STUDIO
                    </h3>
 
                    {/* 2. SOON COME: Fades In/Out */}
-                   <h2 className={`text-5xl md:text-8xl lg:text-9xl font-black text-[#FFD700] text-center absolute leading-none transition-opacity duration-1000 ${wideTracking} ${!showShopBrand ? 'opacity-100' : 'opacity-0'}`}>
+                   <h2 className={`text-5xl md:text-8xl lg:text-9xl font-black text-[#FFD700] text-center absolute leading-none transition-opacity duration-1000 ${!showShopBrand ? 'opacity-100' : 'opacity-0'}`}>
                      SOON COME
                    </h2>
                    
                 </div>
                 
                 {/* Footer Message */}
-                <div className={`mt-12 p-4 border border-[#333] bg-[#111]/50 backdrop-blur-md text-[#888] text-xs uppercase flex items-center gap-2 transition-opacity duration-1000 ${wideTracking} ${!showShopBrand ? 'opacity-100' : 'opacity-50'}`}>
+                <div className={`mt-12 p-4 border border-[#333] bg-[#111]/50 backdrop-blur-md text-[#888] text-xs uppercase flex items-center gap-2 transition-opacity duration-1000 ${!showShopBrand ? 'opacity-100' : 'opacity-50'}`}>
                    <Lock size={12} className="text-[#FFD700]" /> Secure Payments via Paystack.
                 </div>
              </div>
