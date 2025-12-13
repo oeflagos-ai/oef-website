@@ -2,19 +2,32 @@
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 import { BRAND_NAME, CONTACT_EMAIL } from '../constants';
-import { X, ShoppingCart, Lock } from 'lucide-react';
+import { X, Lock } from 'lucide-react';
 import { Product, CartItem } from '../types';
 
 const OStudio: React.FC = () => {
-  // Animation States: 'init' | 'logo' | 'text-expand' | 'text-shrink' | 'button' | 'entered'
+  // Animation States
   const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-expand' | 'text-shrink' | 'button' | 'entered'>('init');
   const [activeTab, setActiveTab] = useState<'about' | 'shop'>('about');
+  
+  // Content Transition State (for fading between tabs)
+  const [isContentVisible, setIsContentVisible] = useState(true);
+  
+  // Shop Specific Animation State
+  const [shopStage, setShopStage] = useState<'brand' | 'transition' | 'message'>('brand');
 
+  // Trigger Entrance Animation Sequence on Mount
   useEffect(() => {
-    // Sequence
+    // Stage 1: Logo fades in
     setTimeout(() => setAnimStage('logo'), 500);
+    
+    // Stage 2: Logo morphs to Text "OLAGBAJUMO STUDIO"
     setTimeout(() => setAnimStage('text-expand'), 2500);
+
+    // Stage 3: Text shrinks to "O STUDIO"
     setTimeout(() => setAnimStage('text-shrink'), 5500);
+
+    // Stage 4: Button Appears
     setTimeout(() => setAnimStage('button'), 7500);
   }, []);
 
@@ -22,6 +35,31 @@ const OStudio: React.FC = () => {
     setAnimStage('entered');
   };
 
+  const handleTabSwitch = (tab: 'about' | 'shop') => {
+    if (tab === activeTab) return;
+    
+    // 1. Fade out current content
+    setIsContentVisible(false);
+
+    // 2. Wait for fade out, then switch tab and reset shop animation if needed
+    setTimeout(() => {
+      setActiveTab(tab);
+      
+      if (tab === 'shop') {
+        // Reset Shop Animation Sequence
+        setShopStage('brand');
+        setTimeout(() => setShopStage('transition'), 2000); // Start fade out of brand
+        setTimeout(() => setShopStage('message'), 3000);    // Start fade in of message
+      }
+
+      // 3. Fade in new content
+      setTimeout(() => setIsContentVisible(true), 50);
+    }, 400); // Duration of the css transition
+  };
+
+  // =========================================
+  // SHOP BACKEND LOGIC (Preserved)
+  // =========================================
   const [cart, setCart] = useState<CartItem[]>([]);
   
   const addToCart = (product: Product) => {
@@ -34,22 +72,23 @@ const OStudio: React.FC = () => {
     });
   };
 
-  const removeFromCart = (productId: string) => {
-    setCart(prev => prev.filter(item => item.id !== productId));
-  };
-
   const getCartTotal = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  // =========================================
+  // RENDER
+  // =========================================
+
   // PRE-ENTRANCE VIEW
   if (animStage !== 'entered') {
     return (
-      <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 overflow-hidden">
+      <div className="fixed inset-0 bg-[#111] flex flex-col items-center justify-center z-50 overflow-hidden font-sans">
         <SEO title="O Studio" description="Olagbajumo Studio: An educational art studio in Lagos." />
         
-        <div className="relative w-full max-w-5xl flex flex-col items-center justify-center h-screen">
+        <div className="relative w-full max-w-7xl flex flex-col items-center justify-center h-screen px-4">
             
+            {/* STAGE 1: LOGO */}
             <div className={`transition-all duration-1000 absolute ${
                animStage === 'text-expand' || animStage === 'text-shrink' || animStage === 'button' 
                ? 'opacity-0 scale-50' 
@@ -61,7 +100,8 @@ const OStudio: React.FC = () => {
                </svg>
             </div>
 
-            <h1 className={`text-3xl md:text-5xl lg:text-7xl font-mono font-bold text-white tracking-[0.2em] md:tracking-[0.5em] text-center absolute transition-all duration-[2000ms] ease-in-out ${
+            {/* STAGE 2: EXPANDED TEXT */}
+            <h1 className={`text-3xl md:text-5xl lg:text-7xl font-bold text-white tracking-[0.2em] md:tracking-[0.5em] text-center absolute transition-all duration-[2000ms] ease-in-out ${
               animStage === 'text-expand' 
                 ? 'opacity-100 tracking-[0.2em] md:tracking-[0.5em] blur-0' 
                 : (animStage === 'logo' || animStage === 'init' ? 'opacity-0 blur-xl' : 'opacity-0 tracking-[0em]')
@@ -69,7 +109,9 @@ const OStudio: React.FC = () => {
               OLAGBAJUMO STUDIO
             </h1>
 
-            <h1 className={`text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter absolute transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
+            {/* STAGE 3 & 4: SHRUNK TEXT */}
+            {/* Made bigger as requested */}
+            <h1 className={`text-5xl md:text-7xl lg:text-9xl font-black text-white tracking-tighter absolute transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
               animStage === 'text-shrink' || animStage === 'button'
                 ? 'opacity-100 scale-100' 
                 : 'opacity-0 scale-150'
@@ -77,9 +119,11 @@ const OStudio: React.FC = () => {
               O STUDIO
             </h1>
 
+            {/* STAGE 4: GLOWING BUTTON */}
+            {/* Increased spacing (mt) and updated color to Golden Yellow #FFD700 */}
             <button 
               onClick={handleEnter}
-              className={`mt-32 md:mt-48 px-12 py-4 border border-[#00FF41] text-[#00FF41] font-mono text-xl uppercase tracking-widest hover:bg-[#00FF41] hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(0,255,65,0.3)] hover:shadow-[0_0_40px_rgba(0,255,65,0.8)] z-20 ${
+              className={`mt-48 md:mt-64 px-12 py-4 border-2 border-[#FFD700] text-[#FFD700] font-bold text-xl uppercase tracking-widest hover:bg-[#FFD700] hover:text-black transition-all duration-500 z-20 animate-[pulse_3s_ease-in-out_infinite] shadow-[0_0_20px_#FFD700] hover:shadow-[0_0_50px_#FFD700] ${
                 animStage === 'button' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
               }`}
             >
@@ -90,13 +134,14 @@ const OStudio: React.FC = () => {
     );
   }
 
-  // ENTERED VIEW
+  // ENTERED VIEW (Main Page)
   return (
-    <div className="min-h-screen bg-[#111] text-[#Eaeaea] font-mono selection:bg-[#00FF41] selection:text-black flex flex-col">
+    <div className="min-h-screen bg-[#111] text-[#Eaeaea] font-sans selection:bg-[#FFD700] selection:text-black flex flex-col">
        <SEO title="O Studio" description="Olagbajumo Studio: Art, Design, and Systems Thinking." />
        
+       {/* HEADER */}
        <header className="fixed top-0 left-0 w-full z-40 border-b border-[#333] bg-[#111]/90 backdrop-blur-md">
-         <div className="flex justify-between items-center h-16 px-4 md:px-8">
+         <div className="flex justify-between items-center h-20 px-4 md:px-8">
             <div className="flex items-center gap-4">
                <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center">
                  <div className="w-3 h-3 bg-white rounded-full"></div>
@@ -104,95 +149,123 @@ const OStudio: React.FC = () => {
                <span className="font-bold tracking-widest text-lg">O STUDIO</span>
             </div>
             
-            <a href="#/" className="p-2 hover:text-[#00FF41] transition-colors border border-transparent hover:border-[#00FF41]">
+            <a href="#/" className="p-2 hover:text-[#FFD700] transition-colors border border-transparent hover:border-[#FFD700]">
                <X />
             </a>
          </div>
          
+         {/* Navigation Tabs */}
          <div className="flex border-t border-[#333]">
             <button 
-              onClick={() => setActiveTab('about')}
+              onClick={() => handleTabSwitch('about')}
               className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold border-r border-[#333] hover:bg-[#222] transition-colors relative ${activeTab === 'about' ? 'bg-white text-black' : 'text-[#888]'}`}
             >
               About
             </button>
             <button 
-              onClick={() => setActiveTab('shop')}
-              className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold hover:bg-[#222] transition-colors relative ${activeTab === 'shop' ? 'bg-[#00FF41] text-black' : 'text-[#888]'}`}
+              onClick={() => handleTabSwitch('shop')}
+              className={`flex-1 py-4 text-center uppercase tracking-widest text-sm font-bold hover:bg-[#222] transition-colors relative ${activeTab === 'shop' ? 'bg-[#FFD700] text-black' : 'text-[#888]'}`}
             >
               Shop
             </button>
          </div>
        </header>
 
-       <main className="flex-grow pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto w-full">
+       {/* CONTENT AREA */}
+       {/* Centered Vertically */}
+       <main className="flex-grow pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto w-full flex flex-col justify-center min-h-screen">
          
-         {activeTab === 'about' && (
-           <div className="animate-fade-in space-y-16">
-              <div className="border border-[#333] p-8 md:p-12 relative overflow-hidden">
-                <div className="absolute top-0 left-0 p-2 border-r border-b border-[#333] text-[10px] uppercase text-[#666]">
-                  System_ID: O_STUDIO_V1
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mt-8">
-                  <div className="md:col-span-4 border-r border-[#333] pr-8 hidden md:block">
-                     <p className="text-xs uppercase tracking-widest text-[#666] mb-4">Core Focus</p>
-                     <ul className="space-y-4 text-sm font-bold">
-                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#00FF41]"></div> Images</li>
-                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#00FF41]"></div> Posters</li>
-                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#00FF41]"></div> Art</li>
-                       <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#00FF41]"></div> Emerging Artist Advisory</li>
-                     </ul>
-
-                     <div className="mt-24">
-                        <p className="text-xs uppercase tracking-widest text-[#666] mb-4">Established</p>
-                        <p className="text-3xl font-black">2018</p>
-                        <p className="text-sm text-[#666]">Lagos, Nigeria</p>
-                     </div>
+         <div className={`transition-opacity duration-500 ease-in-out ${isContentVisible ? 'opacity-100' : 'opacity-0'}`}>
+           
+           {/* ABOUT TAB */}
+           {activeTab === 'about' && (
+             <div className="space-y-16">
+                <div className="border border-[#333] p-8 md:p-12 relative overflow-hidden bg-[#161616]">
+                  <div className="absolute top-0 left-0 p-2 border-r border-b border-[#333] text-[10px] uppercase text-[#666] tracking-widest">
+                    System_ID: O_STUDIO_V1
                   </div>
 
-                  <div className="md:col-span-8">
-                    <h2 className="text-2xl md:text-4xl font-bold mb-8 leading-tight">
-                      Founded by Olafare Olagbaju in 2018, Olagbajumo Studio is an <span className="text-[#666]">(educational)</span> art studio established in the heart of Lagos.
-                    </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mt-8 items-center">
                     
-                    <div className="space-y-6 text-base md:text-lg text-[#aaa] leading-relaxed">
-                      <p>
-                        Composed of a team of one, the studio focuses mainly on images, posters, art, and emerging artist advisory, which are areas at the core of Olafare's intellectual path.
-                      </p>
-                      <p>
-                        Through its transdisciplinary approach, O Studio integrates print, paint, and other art forms into its practice, considering these mediums as complementary. As a systems thinking machine, O Studio has developed significant expertise in design, evidenced by the artists and professionals the studio has worked with.
-                      </p>
+                    {/* Left Column: Core Focus */}
+                    <div className="md:col-span-5 border-r border-[#333] pr-8 hidden md:block h-full">
+                       <p className="text-xs uppercase tracking-widest text-[#666] mb-8">Core Focus</p>
+                       <ul className="space-y-6 text-2xl font-black tracking-tight text-white">
+                         <li className="flex items-center gap-4">
+                            <div className="w-2 h-2 bg-[#FFD700] shadow-[0_0_10px_#FFD700]"></div> 
+                            Images
+                         </li>
+                         <li className="flex items-center gap-4">
+                            <div className="w-2 h-2 bg-[#FFD700] shadow-[0_0_10px_#FFD700]"></div> 
+                            Posters
+                         </li>
+                         <li className="flex items-center gap-4">
+                            <div className="w-2 h-2 bg-[#FFD700] shadow-[0_0_10px_#FFD700]"></div> 
+                            Art
+                         </li>
+                         <li className="flex items-center gap-4">
+                            <div className="w-2 h-2 bg-[#FFD700] shadow-[0_0_10px_#FFD700]"></div> 
+                            Emerging Artist Advisory
+                         </li>
+                       </ul>
+                       
+                       {/* Established section removed as requested */}
+                    </div>
+
+                    {/* Right Column: Narrative */}
+                    <div className="md:col-span-7">
+                      <h2 className="text-3xl md:text-5xl font-bold mb-10 leading-[0.9] tracking-tight">
+                        Founded by Olafare Olagbaju in 2018, Olagbajumo Studio is an <span className="text-[#666] italic">(educational)</span> art studio established in the heart of Lagos.
+                      </h2>
+                      
+                      <div className="space-y-6 text-lg md:text-xl text-[#aaa] leading-relaxed font-medium">
+                        <p>
+                          Composed of a team of one, the studio focuses mainly on images, posters, art, and emerging artist advisory, which are areas at the core of Olafare's intellectual path.
+                        </p>
+                        <p>
+                          Through its transdisciplinary approach, O Studio integrates print, paint, and other art forms into its practice, considering these mediums as complementary. As a systems thinking machine, O Studio has developed significant expertise in design, evidenced by the artists and professionals the studio has worked with.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#333] pt-4 text-[10px] uppercase tracking-widest text-[#444]">
-                 <div>Archival Ref: 001-A</div>
-                 <div>Status: Operational</div>
-                 <div>Mode: Transdisciplinary</div>
-                 <div className="text-right">OEF Network Node</div>
-              </div>
-           </div>
-         )}
+                {/* Decorative "Archive" Footer */}
+                <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#333] pt-4 text-[10px] uppercase tracking-widest text-[#444]">
+                   <div>Archival Ref: 001-A</div>
+                   <div>Status: Operational</div>
+                   <div>Mode: Transdisciplinary</div>
+                   <div className="text-right">OEF Network Node</div>
+                </div>
+             </div>
+           )}
 
-         {activeTab === 'shop' && (
-           <div className="min-h-[50vh] flex flex-col items-center justify-center relative">
-              <div className="text-center space-y-4 relative z-10 mix-blend-difference">
-                 <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-[#00FF41] animate-[pulse_3s_ease-in-out_infinite] opacity-80">
-                   COMING SOON
-                 </h2>
-                 <h3 className="text-3xl md:text-5xl font-bold text-white animate-[pulse_4s_ease-in-out_infinite_reverse]">
-                   O STUDIO
-                 </h3>
-              </div>
-              
-              <div className="mt-12 p-4 border border-[#333] text-[#444] text-xs uppercase tracking-widest flex items-center gap-2">
-                 <Lock size={12} /> Secure Payments via Paystack Integration Ready
-              </div>
-           </div>
-         )}
+           {/* SHOP TAB */}
+           {activeTab === 'shop' && (
+             <div className="min-h-[50vh] flex flex-col items-center justify-center relative w-full">
+                
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                   
+                   {/* 1. O STUDIO: Fades OUT */}
+                   <h3 className={`text-4xl md:text-6xl font-black text-white absolute transition-opacity duration-1000 ${shopStage === 'brand' ? 'opacity-100' : 'opacity-0'}`}>
+                     O STUDIO
+                   </h3>
+
+                   {/* 2. COMING SOON: Fades IN */}
+                   <h2 className={`text-5xl md:text-8xl lg:text-9xl font-black text-[#FFD700] text-center transition-opacity duration-1000 absolute leading-none ${shopStage === 'message' ? 'opacity-100' : 'opacity-0'}`}>
+                     COMING SOON
+                   </h2>
+                   
+                </div>
+                
+                {/* Footer Message (Always visible after transition or fade in with it) */}
+                <div className={`mt-32 p-4 border border-[#333] text-[#666] text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-1000 delay-500 ${shopStage === 'message' ? 'opacity-100' : 'opacity-0'}`}>
+                   <Lock size={12} className="text-[#FFD700]" /> Secure Payments via Paystack.
+                </div>
+             </div>
+           )}
+         
+         </div>
 
        </main>
     </div>
