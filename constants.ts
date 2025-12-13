@@ -12,12 +12,10 @@ export const BRAND_NAME = "OLAGBAJUMO EDUCATION FOUNDATION";
 export const LOGO_SRC = `data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23111111' stroke-width='10'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23111111' stroke-width='10'/%3E%3C/svg%3E`;
 
 // BACKGROUND IMAGE CONFIGURATION
-// Paste a URL here (e.g., "https://example.com/image.jpg") to set a background image for the entire site.
-// Leave empty "" to use the default geometric grid pattern.
 export const SITE_BACKGROUND_IMAGE = "https://srm360.org/wp-content/uploads/2024/11/cirrus-clouds.jpg";
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', path: '/' },
+  // Home removed as requested
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
   { label: 'Partnerships', path: '/partnerships' },
@@ -33,12 +31,10 @@ export const HOME_HERO_SUB = "Advancing education, research, and public engageme
 // PARTNERSHIPS PAGE CONTENT
 export const PARTNERSHIPS_MARQUEE_TEXT = "Thank you for your patience. Partnerships will be announced shortly.";
 
-// ABOUT PAGE CONTENT (Rediet Abebe Style Structure)
-// "About" Sidebar Info
+// ABOUT PAGE CONTENT
 export const ABOUT_SIDEBAR_TITLE = "Our Mission";
-export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation removes barriers to knowledge acquisition by focusing on three key areas: study, projects, and refinement. We nurture a global community of lifelong learners.";
+export const ABOUT_SIDEBAR_SUMMARY = "The Olagbajumo Education Foundation removes barriers to knowledge acquisition in three areas: study, projects, and refinement. We shape a global community of lifelong learners.";
 
-// "About" Main Content Sections
 export const ABOUT_SECTIONS = [
   {
     title: "Vision",
@@ -56,20 +52,21 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Founder and Chairman",
     bio: "Systems thinker. Educator. Entrepreneur.",
     image: "/Olafare.jpg",
-    // Use pipe '|' to separate lines vertically
-    almaMater: "Xavier University '16 (BA, Liberal Arts) | Cornell University '23 (MPA)"
+    almaMater: "Xavier University '16 (BA, Liberal Arts, Economics, Political Science)|Cornell University '23 (Master of Public Administration)"
   },
   {
     name: "Ifeanyi Olagbaju",
     role: "Trustee",
     bio: "Educational advisor with 27 years of experience, including 15 years at EducationUSA.",
     image: "/Ifeanyi.jpg",
-    // Use pipe '|' to separate lines vertically
-    almaMater: "University of Jos '93 (BS, Business Administration) | Villanova University '09 (GCERT, HRM) | University of Sussex '23 (MA, Education)"
+    almaMater: "University of Jos '93 (BS, Business Administration)|Villanova University '09 (GCERT, Human Resource Management)|University of Sussex '23 (MA, Education)"
   }
 ];
 
-// PROJECTS PAGE CONTENT (3 Slots as requested)
+// ==========================================
+// PROJECTS CONFIGURATION
+// ==========================================
+
 export const PROJECTS: Project[] = [
   {
     id: '1',
@@ -80,24 +77,26 @@ export const PROJECTS: Project[] = [
     hideDetailsLink: true
   },
   {
-       id: '2',
+    id: '2',
     title: "Academy Lunch and Learn",
-    description: "A learning series transforming student perspectives on life outside school. This program connects students with professionals through a thematic, hour-long chat.",
+    description: "Next: Dec 20 with Uyeme Itsueli on 'Building a Life Beyond the Script'. A learning series transforming student perspectives on life outside school.",
     status: "Ongoing",
     image: "/project2.png",
-    embedUrl: "https://player.vimeo.com/video/1129844678",
-    hideDetailsLink: true
+    embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
+    hideDetailsLink: false,
+    link: "#/lunch-and-learn",
+    linkText: "View Event Flyer"
   },
   {
     id: '3',
     title: "Project Saber",
-    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful.",
+    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful..",
     status: "Ongoing",
     image: "/project3.png",
     hideDetailsLink: true, // Hidden as requested, access via hidden 'key' link
     embedUrl: "",
     link: "#/saber",
-    linkText: "View Pitch Deck" // Custom text for this project
+    linkText: "View Pitch Deck"
   }
 ];
 
@@ -126,7 +125,7 @@ export const SABER_DECK_DATA = {
     { role: "Cloud/AI Infra", cost: "$500–$1.2k/mo" },
   ],
   totalBurn: "Total Early Burn: $6k–$9k/month",
-  // Use of Funds Chart Data (Percentages must sum to 100 roughly for logic, but here acts as labels)
+  // Use of Funds Chart Data
   useOfFunds: [
     { label: "Product & Engineering", amount: "$160k", pct: "40%", desc: "Core engineer (24mo), contract design, AI infra.", colorClass: "bg-swiss-black" },
     { label: "Pilots & Evidence", amount: "$80k", pct: "20%", desc: "4–6 school pilots, impact metrics.", colorClass: "bg-swiss-blue" },

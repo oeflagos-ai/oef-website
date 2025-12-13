@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BRAND_NAME, NAV_ITEMS, LOGO_SRC } from '../constants';
 import { Menu, X } from 'lucide-react';
@@ -19,7 +20,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo / Brand */}
-          <div className="flex-shrink-0 flex items-center gap-4">
+          <div className="flex-shrink-0 flex items-center gap-3 md:gap-4">
             <a href="#/" className="flex items-center gap-3 group">
               <img 
                 src={LOGO_SRC} 
@@ -32,15 +33,15 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          {/* Desktop Menu - Visible on Large screens (Laptops) */}
+          <div className="hidden lg:flex space-x-6">
             {NAV_ITEMS.map((item) => {
               const isActive = currentPath === item.path;
               return (
                 <a
                   key={item.path}
                   href={`#${item.path}`}
-                  className={`text-xs md:text-sm font-bold uppercase tracking-widest hover:text-swiss-red transition-colors duration-200 ${
+                  className={`text-xs font-bold uppercase tracking-widest hover:text-swiss-red transition-colors duration-200 whitespace-nowrap ${
                     isActive ? 'text-swiss-red decoration-2 underline-offset-4' : 'text-swiss-black'
                   }`}
                 >
@@ -50,8 +51,8 @@ const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile Menu Button - Visible on Medium/Small screens */}
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-swiss-black hover:text-swiss-red focus:outline-none"
@@ -64,7 +65,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-swiss-bg border-b-2 border-swiss-black absolute w-full">
+        <div className="lg:hidden bg-swiss-bg border-b-2 border-swiss-black absolute w-full h-screen md:h-auto overflow-y-auto pb-20">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
             {NAV_ITEMS.map((item) => {
               const isActive = currentPath === item.path;
@@ -73,7 +74,7 @@ const Navbar: React.FC = () => {
                   key={item.path}
                   href={`#${item.path}`}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-4 text-xl font-black uppercase tracking-tighter ${
+                  className={`block px-3 py-6 text-xl md:text-2xl font-black uppercase tracking-tighter ${
                     isActive ? 'text-swiss-red' : 'text-swiss-black'
                   }`}
                 >

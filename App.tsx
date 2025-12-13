@@ -8,7 +8,7 @@ import Contact from './pages/Contact';
 import Partnerships from './pages/Partnerships';
 import SaberDeck from './pages/SaberDeck';
 import LunchAndLearn from './pages/LunchAndLearn';
-import OStudio from './pages/OStudio';
+import OStudio from './pages/O Studio';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {

@@ -5,27 +5,16 @@ import { BRAND_NAME, CONTACT_EMAIL } from '../constants';
 import { X, ShoppingCart, Lock } from 'lucide-react';
 import { Product, CartItem } from '../types';
 
-// =========================================
-// O STUDIO: COMPONENT
-// =========================================
-
 const OStudio: React.FC = () => {
   // Animation States: 'init' | 'logo' | 'text-expand' | 'text-shrink' | 'button' | 'entered'
   const [animStage, setAnimStage] = useState<'init' | 'logo' | 'text-expand' | 'text-shrink' | 'button' | 'entered'>('init');
   const [activeTab, setActiveTab] = useState<'about' | 'shop'>('about');
 
-  // Trigger Animation Sequence on Mount
   useEffect(() => {
-    // Stage 1: Logo fades in
+    // Sequence
     setTimeout(() => setAnimStage('logo'), 500);
-    
-    // Stage 2: Logo morphs to Text "OLAGBAJUMO STUDIO"
     setTimeout(() => setAnimStage('text-expand'), 2500);
-
-    // Stage 3: Text shrinks to "O STUDIO"
     setTimeout(() => setAnimStage('text-shrink'), 5500);
-
-    // Stage 4: Button Appears
     setTimeout(() => setAnimStage('button'), 7500);
   }, []);
 
@@ -33,24 +22,8 @@ const OStudio: React.FC = () => {
     setAnimStage('entered');
   };
 
-  // =========================================
-  // SHOP BACKEND STRUCTURE (Ready for Paystack)
-  // =========================================
-  
-  // NOTE: This section contains the logic requested for the backend structure.
-  // It handles Cart State, Adding/Removing items, and calculating totals.
-  // Although the frontend currently shows "COMING SOON", this logic is fully functional.
-
   const [cart, setCart] = useState<CartItem[]>([]);
   
-  // Dummy Paystack Config Placeholder
-  const paystackConfig = {
-    publicKey: "pk_test_xxxxxxxxxxxxxxxxxxxx", // REPLACE WITH YOUR PUBLIC KEY
-    email: CONTACT_EMAIL, // Customer email (would come from input)
-    amount: 0, // Calculated dynamically
-    currency: 'NGN',
-  };
-
   const addToCart = (product: Product) => {
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -69,19 +42,6 @@ const OStudio: React.FC = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-  const handleCheckout = () => {
-    // PAYSTACK INTEGRATION POINT
-    // 1. Initialize Paystack Pop-up here.
-    // 2. On success, send cart summary to backend/email service.
-    // 3. Clear cart.
-    console.log("Initializing Paystack for amount:", getCartTotal());
-    alert("Paystack integration ready. Add Public Key in code to enable.");
-  };
-
-  // =========================================
-  // RENDER
-  // =========================================
-
   // PRE-ENTRANCE VIEW
   if (animStage !== 'entered') {
     return (
@@ -90,20 +50,17 @@ const OStudio: React.FC = () => {
         
         <div className="relative w-full max-w-5xl flex flex-col items-center justify-center h-screen">
             
-            {/* STAGE 1 & 2: LOGO TRANSITION */}
             <div className={`transition-all duration-1000 absolute ${
                animStage === 'text-expand' || animStage === 'text-shrink' || animStage === 'button' 
                ? 'opacity-0 scale-50' 
                : (animStage === 'logo' ? 'opacity-100 scale-100' : 'opacity-0 scale-90')
             }`}>
-              {/* Custom O Studio Logo - Abstract Double Circle stylized for dark mode */}
                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="50" cy="50" r="40" stroke="white" strokeWidth="8" className="animate-[spin_10s_linear_infinite]" />
                   <circle cx="50" cy="50" r="20" fill="white" className="animate-pulse" />
                </svg>
             </div>
 
-            {/* STAGE 2: EXPANDED TEXT */}
             <h1 className={`text-3xl md:text-5xl lg:text-7xl font-mono font-bold text-white tracking-[0.2em] md:tracking-[0.5em] text-center absolute transition-all duration-[2000ms] ease-in-out ${
               animStage === 'text-expand' 
                 ? 'opacity-100 tracking-[0.2em] md:tracking-[0.5em] blur-0' 
@@ -112,7 +69,6 @@ const OStudio: React.FC = () => {
               OLAGBAJUMO STUDIO
             </h1>
 
-            {/* STAGE 3 & 4: SHRUNK MARQUEE TEXT */}
             <h1 className={`text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter absolute transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
               animStage === 'text-shrink' || animStage === 'button'
                 ? 'opacity-100 scale-100' 
@@ -121,7 +77,6 @@ const OStudio: React.FC = () => {
               O STUDIO
             </h1>
 
-            {/* STAGE 4: GLOWING BUTTON */}
             <button 
               onClick={handleEnter}
               className={`mt-32 md:mt-48 px-12 py-4 border border-[#00FF41] text-[#00FF41] font-mono text-xl uppercase tracking-widest hover:bg-[#00FF41] hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(0,255,65,0.3)] hover:shadow-[0_0_40px_rgba(0,255,65,0.8)] z-20 ${
@@ -135,12 +90,11 @@ const OStudio: React.FC = () => {
     );
   }
 
-  // ENTERED VIEW (Main Page)
+  // ENTERED VIEW
   return (
     <div className="min-h-screen bg-[#111] text-[#Eaeaea] font-mono selection:bg-[#00FF41] selection:text-black flex flex-col">
        <SEO title="O Studio" description="Olagbajumo Studio: Art, Design, and Systems Thinking." />
        
-       {/* HEADER */}
        <header className="fixed top-0 left-0 w-full z-40 border-b border-[#333] bg-[#111]/90 backdrop-blur-md">
          <div className="flex justify-between items-center h-16 px-4 md:px-8">
             <div className="flex items-center gap-4">
@@ -155,7 +109,6 @@ const OStudio: React.FC = () => {
             </a>
          </div>
          
-         {/* Navigation Tabs */}
          <div className="flex border-t border-[#333]">
             <button 
               onClick={() => setActiveTab('about')}
@@ -172,10 +125,8 @@ const OStudio: React.FC = () => {
          </div>
        </header>
 
-       {/* CONTENT AREA */}
        <main className="flex-grow pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto w-full">
          
-         {/* ABOUT TAB */}
          {activeTab === 'about' && (
            <div className="animate-fade-in space-y-16">
               <div className="border border-[#333] p-8 md:p-12 relative overflow-hidden">
@@ -217,7 +168,6 @@ const OStudio: React.FC = () => {
                 </div>
               </div>
 
-              {/* Decorative "Archive" Footer */}
               <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#333] pt-4 text-[10px] uppercase tracking-widest text-[#444]">
                  <div>Archival Ref: 001-A</div>
                  <div>Status: Operational</div>
@@ -227,16 +177,8 @@ const OStudio: React.FC = () => {
            </div>
          )}
 
-         {/* SHOP TAB */}
          {activeTab === 'shop' && (
            <div className="min-h-[50vh] flex flex-col items-center justify-center relative">
-              {/* CART SUMMARY (Hidden visual, present in code structure) */}
-              {/* 
-                <div className="absolute top-0 right-0 p-4 border border-[#333] text-xs">
-                  CART: {cart.length} Items | TOTAL: {getCartTotal()}
-                </div>
-              */}
-
               <div className="text-center space-y-4 relative z-10 mix-blend-difference">
                  <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-[#00FF41] animate-[pulse_3s_ease-in-out_infinite] opacity-80">
                    COMING SOON
