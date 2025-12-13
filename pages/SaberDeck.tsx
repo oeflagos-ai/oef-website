@@ -235,7 +235,7 @@ const SaberDeck: React.FC = () => {
            <div className="bg-white p-6 shadow-sm border-l-4 border-swiss-red">
              <h3 className="font-black text-lg mb-2 flex items-center gap-2"><Users size={20}/> Guaranteed Pipeline</h3>
              <div className="text-4xl font-black mb-1">60-100</div>
-             <p className="text-sm">Students for Betavia Olagbajumo Education Foundation (OEF) for rapid feedback loops.</p>
+             <p className="text-sm">Students for Olagbajumo Education Foundation (OEF) for rapid feedback loops.</p>
            </div>
          </div>
       </div>
