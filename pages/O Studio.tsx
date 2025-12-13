@@ -193,7 +193,7 @@ const OStudio: React.FC = () => {
            {activeTab === 'about' && (
              <div className="space-y-16">
                 <div className="border border-[#333] p-8 md:p-12 relative overflow-hidden bg-[#161616]">
-                  <div className="absolute top-0 left-0 p-2 border-r border-b border-[#333] text-[10px] uppercase text-[#666] tracking-widest">
+                  <div className="absolute top-0 left-0 p-2 border-r border-b border-[#333] text-[10px] uppercase text-[#777] tracking-widest">
                     System_ID: O_STUDIO_V1
                   </div>
 
@@ -201,7 +201,7 @@ const OStudio: React.FC = () => {
                     
                     {/* Left Column: Core Focus */}
                     <div className="md:col-span-5 border-r border-[#333] pr-8 hidden md:block h-full">
-                       <p className="text-xs uppercase tracking-widest text-[#666] mb-8">Core Focus</p>
+                       <p className="text-xs uppercase tracking-widest text-[#777] mb-8">Core Focus</p>
                        <ul className="space-y-6 text-2xl font-black tracking-tight text-white">
                          <li className="flex items-center gap-4">
                             <div className="w-2 h-2 bg-[#FFD700] shadow-[0_0_10px_#FFD700]"></div> 
@@ -225,7 +225,7 @@ const OStudio: React.FC = () => {
                     {/* Right Column: Narrative */}
                     <div className="md:col-span-7">
                       <h2 className="text-3xl md:text-5xl font-bold mb-10 leading-[0.9] tracking-tight">
-                        Founded by Olafare Olagbaju in 2018, Olagbajumo Studio is an <span className="text-[#666] italic">(educational)</span> art studio established in the heart of Lagos.
+                        Founded by Olafare Olagbaju in 2018, Olagbajumo Studio is an <span className="text-[#777] italic">(educational)</span> art studio established in the heart of Lagos.
                       </h2>
                       
                       <div className="space-y-6 text-lg md:text-xl text-[#aaa] leading-relaxed font-medium">
@@ -269,7 +269,7 @@ const OStudio: React.FC = () => {
                 </div>
                 
                 {/* Footer Message */}
-                <div className={`mt-12 p-4 border border-[#333] text-[#666] text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-1000 ${!showShopBrand ? 'opacity-100' : 'opacity-50'}`}>
+                <div className={`mt-12 p-4 border border-[#333] text-[#777] text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-1000 ${!showShopBrand ? 'opacity-100' : 'opacity-50'}`}>
                    <Lock size={12} className="text-[#FFD700]" /> Secure Payments via Paystack.
                 </div>
              </div>
