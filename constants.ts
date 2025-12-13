@@ -21,6 +21,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
   { label: 'Partnerships', path: '/partnerships' },
+  { label: 'O Studio', path: '/ostudio' },
   { label: 'Contact', path: '/contact' },
 ];
 

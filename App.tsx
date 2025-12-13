@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Partnerships from './pages/Partnerships';
 import SaberDeck from './pages/SaberDeck';
 import LunchAndLearn from './pages/LunchAndLearn';
+import OStudio from './pages/OStudio';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
@@ -69,6 +70,10 @@ const App: React.FC = () => {
       break;
     case '/contact':
       Component = Contact;
+      break;
+    case '/ostudio':
+      Component = OStudio;
+      useLayout = false; // O Studio has its own full-screen layout/theme
       break;
     case '/saber':
       Component = SaberDeck;
