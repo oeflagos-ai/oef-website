@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
   {
     id: '3',
     title: "Project Saber",
-    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful..",
+    description: "In Project Saber, we research how technology can play a key role in learning and make processes engaging and playful.",
     status: "Ongoing",
     image: "/project3.png",
     hideDetailsLink: true, // Hidden as requested, access via hidden 'key' link
