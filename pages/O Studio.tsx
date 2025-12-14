@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 import { LOGO_SRC, OSTUDIO_BG_IMAGE, OSTUDIO_PLAYLISTS } from '../constants';
-import { X, Lock, Music, ChevronDown } from 'lucide-react';
+import { X, Lock, ChevronDown } from 'lucide-react';
 
 const OStudio: React.FC = () => {
   // Animation States for Intro
@@ -189,7 +189,7 @@ const OStudio: React.FC = () => {
           <img 
             src={OSTUDIO_BG_IMAGE} 
             alt="Background" 
-            className="w-full h-full object-cover blur-sm opacity-60 scale-110" 
+            className="w-full h-full object-cover blur-md opacity-60 scale-110" 
           />
           {/* Dark overlay to ensure text readability */}
           <div className="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
@@ -315,11 +315,7 @@ const OStudio: React.FC = () => {
            {activeTab === 'playlists' && (
              <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-center min-h-[50vh]">
                <div className="w-full space-y-4">
-                 <div className="text-center mb-8">
-                    <Music className="inline-block text-[#FFD700] mb-4" size={40} />
-                    <h2 className="text-3xl md:text-4xl font-black text-white">SOUNDTRACKS</h2>
-                 </div>
-
+                 
                  {OSTUDIO_PLAYLISTS.map((playlist, idx) => {
                    const isExpanded = expandedPlaylist === idx;
                    return (
@@ -333,7 +329,7 @@ const OStudio: React.FC = () => {
                          className={`w-full p-4 md:p-6 flex items-center justify-between border-2 border-[#333] bg-[#161616] hover:bg-[#222] hover:border-[#FFD700] hover:scale-[1.02] transition-all duration-200 group relative overflow-hidden z-10 ${isExpanded ? 'border-[#FFD700] bg-[#222]' : ''}`}
                        >
                           <div className="flex flex-col items-start text-left">
-                             <h3 className="text-lg md:text-xl font-bold uppercase text-white group-hover:text-[#FFD700] transition-colors">
+                             <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-[#FFD700] transition-colors">
                                {playlist.title}
                              </h3>
                              <p className="text-xs md:text-sm text-[#888] font-medium mt-1">

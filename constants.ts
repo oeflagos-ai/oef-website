@@ -85,7 +85,7 @@ export const PROJECTS: Project[] = [
     image: "/project2.png",
     embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
     hideDetailsLink: false,
-    link: "https://www.oeflagos.com/#/lunch-and-learn",
+    link: "https://www.oeflagos.org/#/lunch-and-learn",
     linkText: "View Event Flyer"
   },
   {
