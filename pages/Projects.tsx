@@ -8,8 +8,8 @@ import SEO from '../components/SEO';
 const Projects: React.FC = () => {
   // Initialize projects from localStorage or use defaults from constants
   const [projects, setProjects] = useState<Project[]>(() => {
-    // UPDATED KEY: 'oef_projects_v7' to ensure new description/links from constants are loaded
-    const saved = localStorage.getItem('oef_projects_v7');
+    // UPDATED KEY: 'oef_projects_v10' to ensure new description/links from constants are loaded
+    const saved = localStorage.getItem('oef_projects_v10');
     return saved ? JSON.parse(saved) : PROJECTS;
   });
 
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
 
   // Persist to localStorage whenever projects change
   useEffect(() => {
-    localStorage.setItem('oef_projects_v7', JSON.stringify(projects));
+    localStorage.setItem('oef_projects_v10', JSON.stringify(projects));
   }, [projects]);
 
   const startEditing = (project: Project) => {
@@ -92,7 +92,7 @@ const Projects: React.FC = () => {
               PROJECTS
             </h1>
             <p className="text-lg md:text-xl text-swiss-black max-w-3xl leading-relaxed font-medium">
-              Our ongoing initiatives. Curated to highlight our active developments in transforming education.
+              Our ongoing projects. Highlighting our efforts to modernise education.
             </p>
           </div>
         </header>

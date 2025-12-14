@@ -84,8 +84,8 @@ export const PROJECTS: Project[] = [
     status: "Ongoing",
     image: "/project2.png",
     embedUrl: "https://player.vimeo.com/video/1129844678?h=de2a568633",
-    hideDetailsLink: true,
-    link: "#/lunch-and-learn",
+    hideDetailsLink: false,
+    link: "https://www.oeflagos.com/#/lunch-and-learn",
     linkText: "View Event Flyer"
   },
   {
@@ -155,11 +155,50 @@ export const LUNCH_LEARN_CONFIG = {
   speakerBioMain: "Uyeme is a seasoned Development Professional and Communications Strategist who blends creativity, analytical discipline, and a passion for social development.",
   speakerBioSub: "Currently serving as the Executive Director of Relate Africa, a Lagos-based nonprofit, she empowers working women across diverse backgrounds. Under her leadership, the organization trained over 100 female traders in Idumota Market on financial literacy and marketing.",
   
-  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on using storytelling as a tool for social change and creating impact beyond traditional career scripts.",
+  sessionContext: "This session aligns perfectly with our mission to train self-directed learners. Uyeme will lead the conversation on the imporatnce of boldness and creating impact beyond traditional career scripts.",
   
   // Using Vimeo Thumbnail as the Social Sharing Image for the event
   socialImage: "https://vumbnail.com/1129844678.jpg"
 };
+
+// ==========================================
+// O STUDIO PLAYLISTS
+// ==========================================
+
+export const OSTUDIO_PLAYLISTS = [
+  {
+    title: "Benefit of the Doubt",
+    embedUrl: "https://open.spotify.com/embed/playlist/4QXRdOjNm8gS4ppYGQiAxI?si=e74c72cd2a004982&utm_medium=share&utm_source=linktree"
+  },
+  {
+    title: "Fifi",
+    embedUrl: "https://open.spotify.com/embed/playlist/1B4goBYVJsGVlvcE0y6rA0?pi=e-k_yrwDrJQruS&si=_IiPB6wSQq6M92Xg5EwLAg&utm_medium=share&utm_source=linktree"
+  },
+  {
+    title: "don't be stupid",
+    embedUrl: "https://open.spotify.com/embed/playlist/3GFdmbzitbZw7ZbPRQAWz4?si=gkb9bj-xRWKyF2wqiRE4hw&pi=DTSFq2pHTnG2O&nd=1&dlsi=bfd199655ab2463b"
+  },
+  {
+    title: "O Studio #24.1",
+    embedUrl: "https://open.spotify.com/embed/playlist/1SULmoA4x768akC8v5FxLO?pi=e-p0-D9HdDRbWY&si=POErBzAaS1yjq1PqVUQnyQ&utm_medium=share&utm_source=linktree"
+  },
+  {
+    title: "O Studio #17",
+    embedUrl: "https://open.spotify.com/embed/playlist/4PAvBrWoaCMLKGwRY5QPQ6?si=04a57aebbea645ce"
+  },
+  {
+    title: "O Studio #15",
+    embedUrl: "https://open.spotify.com/embed/playlist/4pTvEQ2VyJasQddLqrntrr?si=CBwmwGOsReqUhFDYv8-O2w&utm_medium=share&utm_source=linktree"
+  },
+  {
+    title: "O Studio #11",
+    embedUrl: "https://open.spotify.com/embed/playlist/2OytYAMva9u49pAKi0cop9?si=AF0upi41TJqGdkRV537uZw&utm_medium=share&utm_source=linktree"
+  },
+  {
+    title: "O Studio #8",
+    embedUrl: "https://open.spotify.com/embed/playlist/1ZZvdUz6D5VVpRyRreiN0Y?dl_branch=1&si=teJL3I4cSGuJqUpFQn-t8g&utm_medium=share&utm_source=linktree&nd=1&dlsi=00218ae4043643f6"
+  }
+];
 
 // CONTACT INFO
 export const CONTACT_EMAIL = "oef.lagos@gmail.com";
@@ -168,7 +207,7 @@ export const FOOTER_TAGLINE = "Democratizing education by increasing access and 
 export const FOOTER_REGISTRATION = "Registered Under Part F of CAMA 2020 as an Incorporated Trustee by the Corporate Affairs Commission, Federal Republic of Nigeria.";
 
 export const SOCIAL_LINKS = [
-  { platform: "Academy Lunch and Learn", url: "https://vimeo.com/olagbajumoeducation" },
+  { platform: "Academy Lunch and Learn", url: "https://www.oeflagos.org/#/lunch-and-learn/" },
   { platform: "Book a Free Consultation", url: "https://calendar.app.google/rxNiCF47KRXC7vG77" },
   { platform: "Abigail Academy LinkedIn", url: "https://www.linkedin.com/company/abigail-academy-201325/" }
 ];

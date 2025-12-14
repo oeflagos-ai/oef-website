@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
-import { LOGO_SRC, OSTUDIO_BG_IMAGE } from '../constants';
-import { X, Lock } from 'lucide-react';
+import { LOGO_SRC, OSTUDIO_BG_IMAGE, OSTUDIO_PLAYLISTS } from '../constants';
+import { X, Lock, Music, ChevronDown } from 'lucide-react';
 
 const OStudio: React.FC = () => {
   // Animation States for Intro
@@ -16,13 +16,16 @@ const OStudio: React.FC = () => {
   const [mainOpacity, setMainOpacity] = useState(0);
 
   // Tab State
-  const [activeTab, setActiveTab] = useState<'about' | 'shop'>('about');
+  const [activeTab, setActiveTab] = useState<'about' | 'playlists' | 'shop'>('about');
   
   // Content Transition State (for fading between tabs)
   const [isContentVisible, setIsContentVisible] = useState(true);
   
   // Shop Loop State
   const [showShopBrand, setShowShopBrand] = useState(true);
+
+  // Playlists State (Track which one is expanded)
+  const [expandedPlaylist, setExpandedPlaylist] = useState<number | null>(null);
 
   // =========================================
   // INTRO ANIMATION SEQUENCE
@@ -86,7 +89,7 @@ const OStudio: React.FC = () => {
     }, 1000);
   };
 
-  const handleTabSwitch = (tab: 'about' | 'shop') => {
+  const handleTabSwitch = (tab: 'about' | 'playlists' | 'shop') => {
     if (tab === activeTab) return;
     setIsContentVisible(false);
     setTimeout(() => {
@@ -94,6 +97,10 @@ const OStudio: React.FC = () => {
       if (tab === 'shop') setShowShopBrand(true); // Reset to start of loop
       setTimeout(() => setIsContentVisible(true), 50);
     }, 400);
+  };
+
+  const togglePlaylist = (idx: number) => {
+    setExpandedPlaylist(prev => (prev === idx ? null : idx));
   };
 
   // Shared Font Style for Extended Look
@@ -182,7 +189,7 @@ const OStudio: React.FC = () => {
           <img 
             src={OSTUDIO_BG_IMAGE} 
             alt="Background" 
-            className="w-full h-full object-cover blur-md opacity-60 scale-110" 
+            className="w-full h-full object-cover blur-sm opacity-60 scale-110" 
           />
           {/* Dark overlay to ensure text readability */}
           <div className="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
@@ -218,6 +225,14 @@ const OStudio: React.FC = () => {
               }`}
             >
               About
+            </button>
+            <button 
+              onClick={() => handleTabSwitch('playlists')}
+              className={`flex-1 py-4 text-center uppercase text-sm border-r border-[#ccc] transition-colors relative text-black ${
+                activeTab === 'playlists' ? 'bg-[#FFD700]' : 'bg-white hover:bg-[#E5E4E2]'
+              }`}
+            >
+              Playlists
             </button>
             <button 
               onClick={() => handleTabSwitch('shop')}
@@ -293,6 +308,76 @@ const OStudio: React.FC = () => {
                    <div>Mode: Transdisciplinary</div>
                    <div className="text-right">OEF Network Node</div>
                 </div>
+             </div>
+           )}
+
+           {/* PLAYLISTS TAB (Updated to Linktree style) */}
+           {activeTab === 'playlists' && (
+             <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-center min-h-[50vh]">
+               <div className="w-full space-y-4">
+                 <div className="text-center mb-8">
+                    <Music className="inline-block text-[#FFD700] mb-4" size={40} />
+                    <h2 className="text-3xl md:text-4xl font-black text-white">SOUNDTRACKS</h2>
+                 </div>
+
+                 {OSTUDIO_PLAYLISTS.map((playlist, idx) => {
+                   const isExpanded = expandedPlaylist === idx;
+                   return (
+                     <div 
+                        key={idx} 
+                        className="w-full transition-all duration-300"
+                     >
+                       {/* Linktree-style Button */}
+                       <button 
+                         onClick={() => togglePlaylist(idx)}
+                         className={`w-full p-4 md:p-6 flex items-center justify-between border-2 border-[#333] bg-[#161616] hover:bg-[#222] hover:border-[#FFD700] hover:scale-[1.02] transition-all duration-200 group relative overflow-hidden z-10 ${isExpanded ? 'border-[#FFD700] bg-[#222]' : ''}`}
+                       >
+                          <div className="flex flex-col items-start text-left">
+                             <h3 className="text-lg md:text-xl font-bold uppercase text-white group-hover:text-[#FFD700] transition-colors">
+                               {playlist.title}
+                             </h3>
+                             <p className="text-xs md:text-sm text-[#888] font-medium mt-1">
+                               {playlist.description}
+                             </p>
+                          </div>
+                          
+                          <div className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}>
+                             <ChevronDown className="text-[#666] group-hover:text-[#FFD700]" />
+                          </div>
+                       </button>
+
+                       {/* Collapsible Embed Area */}
+                       <div 
+                         className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#111] border-x border-b border-[#333]/50 mx-2 ${
+                           isExpanded ? 'max-h-[500px] opacity-100 mt-2 rounded-b-lg' : 'max-h-0 opacity-0 mt-0'
+                         }`}
+                       >
+                         {isExpanded && (
+                           <div className="p-2">
+                             <iframe 
+                               style={{ borderRadius: '12px' }} 
+                               src={playlist.embedUrl} 
+                               width="100%" 
+                               height="352" 
+                               frameBorder="0" 
+                               allowFullScreen 
+                               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                               loading="lazy"
+                               title={playlist.title}
+                             ></iframe>
+                           </div>
+                         )}
+                       </div>
+                     </div>
+                   );
+                 })}
+               </div>
+
+               <div className="mt-12 text-center">
+                  <p className="text-xs uppercase text-[#666] tracking-widest">
+                    Curated by Olafare for Olagbajumo Studio
+                  </p>
+               </div>
              </div>
            )}
 
